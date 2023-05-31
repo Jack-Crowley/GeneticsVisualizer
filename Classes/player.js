@@ -22,11 +22,13 @@ class KeyInputHandler {
         this.upHoldActions = new Map()
         this.downPressActions = new Map()
         this.downHoldActions = new Map()
-        
+
         this.currentVector = new Vector();
     }
 
     calculateVector() {
-        return this.currentVector;
+        let newVector = this.currentVector.clone();
+        this.currentVector.clear()
+        return newVector;
     }
 }
