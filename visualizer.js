@@ -10,8 +10,6 @@ function startSimulation() {
     
     sb.style.display = "none";
     eb.style.display = "block";
-
-    
 }
 
 function endSimulation() {
