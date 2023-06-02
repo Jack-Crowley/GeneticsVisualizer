@@ -1,10 +1,9 @@
-class Agent extends Player {
+class Agent {
 
     // Basic Constructor
     constructor(inputsHeaders, weights, location=0) {
         super(location);
         this.inputsHeaders = inputsHeaders;
-        this.player = player;
         this.weights = weights;
 
         this.nn = null; // Create neural net with first layer headers in inputsHeaders and weights

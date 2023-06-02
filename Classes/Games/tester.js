@@ -25,7 +25,7 @@ class Tester extends Game{
     }
 
     start() {
-        this.taskIDs.push(setInterval(() => {addScore(-1)}, 1000))
+        this.taskIDs.push(setInterval(() => {addScore(-5)}, 1000))
         super.start()
     }
 }
