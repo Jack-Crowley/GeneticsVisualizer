@@ -27,4 +27,6 @@ function endSimulation() {
 
     sb.style.display = "block";
     eb.style.display = "none";
+
+    game.end()
 }
