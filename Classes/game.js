@@ -1,6 +1,7 @@
 class Game {
-    constructor(score) {
+    constructor(score, board) {
         this.score = score;
+        this.board = board;
         this.interval = -1;
     }
 
@@ -9,7 +10,7 @@ class Game {
     }
 
     frame() {
-
+        
     }
 
     end() {

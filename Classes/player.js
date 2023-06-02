@@ -1,9 +1,6 @@
 class Player {
-    constructor() {
-        this(new Location(), new Map())
-    }
 
-    constructor(location) {
+    constructor(location=new Location()) {
         this.location = location;
 
         // UpPress, UpHold, DownPress, DownHold

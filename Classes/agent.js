@@ -1,11 +1,7 @@
 class Agent extends Player {
 
-    constructor(inputsHeaders, weights) {
-        this(inputsHeaders,weights,0);
-    }
-
     // Basic Constructor
-    constructor(inputsHeaders, weights, location) {
+    constructor(inputsHeaders, weights, location=0) {
         super(location);
         this.inputsHeaders = inputsHeaders;
         this.player = player;

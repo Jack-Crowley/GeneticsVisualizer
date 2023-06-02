@@ -1,9 +1,6 @@
 class Vector {
-    constructor() {
-        this(0,0)
-    }
 
-    constructor(x, y) {
+    constructor(x=0, y=0) {
         this.x = x;
         this.y = y;
     }

@@ -1,10 +1,6 @@
 class Location {
 
-    constructor() {
-        this(0,0,0,0)
-    }
-
-    constructor(xPos, yPos, xAcceleration, yAcceleration) {
+    constructor(xPos=0, yPos=0, xAcceleration=0, yAcceleration=0) {
         this.setXPos(xPos)
         this.setXAcceleration(xAcceleration)
         this.setYPos(yPos)
