@@ -10,7 +10,6 @@ eb.addEventListener("click", endSimulation)
 
 let game = new Tester(addScore, new Board(canvas))
 
-
 function startSimulation() {
     running = true;
     

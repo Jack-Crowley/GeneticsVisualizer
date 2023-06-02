@@ -1,4 +1,4 @@
-class Location {
+class Position {
 
     constructor(xPos=0, yPos=0, xAcceleration=0, yAcceleration=0) {
         this.setXPos(xPos)
@@ -32,10 +32,15 @@ class Location {
     }
 
     XAcceleration() {
-        return this.xPos;
+        return this.xAcceleration;
     }
 
     YAcceleration() {
-        return this.yPos;
+        return this.yAcceleration;
+    }
+
+    applyVectors() {
+        this.setXPos(this.XPos()+this.XAcceleration())
+        this.setYPos(this.YPos()+this.YAcceleration())
     }
 }
