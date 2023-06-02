@@ -22,9 +22,8 @@ class Circle extends Shape {
         this.c.closePath();
     }
 
-    update() {
-        this.position.applyVelocity()
-        super.update()
+    collide(otherShape) {
+        return Math.sqrt((otherShape.position.xPos+this.position.xPos)**2+(otherShape.position.yPos+this.position.yPos)) < this.r
     }
 
 }

@@ -4,6 +4,7 @@ class Shape {
         this.c = c;
         this.strokeColor = strokeColor;
         this.fillColor = fillColor;
+        this.collisions = []
     }
 
     draw() {
@@ -12,6 +13,8 @@ class Shape {
 
     update() {
         this.draw();
+        this.position.applyVelocity()
+        this.collisions.forEach((obj) => {collide(obj)})
     }
 
     collide(otherShape) {}
