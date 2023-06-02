@@ -3,11 +3,11 @@ class Game {
         this.score = score;
         this.board = board;
 
-        this.interval = -1;
+        this.taskIDs = [];
     }
 
     start() {
-        this.interval = setInterval(this.frame, 10, this.board)
+        this.taskIDs.push(setInterval(this.frame, 10, this.board))
     }
 
     frame(board) {
@@ -15,9 +15,8 @@ class Game {
     }
 
     end() {
-        if (this.interval != -1) {
-            clearInterval(this.interval);
-        }
-        this.interval = -1;
+        this.taskIDs.forEach((id) => {
+            clearInterval(id)
+        })
     }
 }

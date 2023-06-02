@@ -5,6 +5,8 @@ eb.addEventListener("click", endSimulation)
 let game;
 
 function startSimulation() {
+    setScore(0)
+
     board = new Board(canvas);
     game = new Tester(addScore, board);
 
