@@ -3,7 +3,9 @@ class Board {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
 
-        this.shapes= [new Circle(new Position(0,0,new Vector(1, 1)),this.ctx,20,"#ff0000")];
+        this.player = new Player(new Circle(new Position(0,0,new Vector(1, 1)),this.ctx,20,"#ff0000"))
+
+        this.shapes= [];
     }
 
     clear() {
@@ -15,5 +17,7 @@ class Board {
         this.shapes.forEach((shape) => {
             shape.update()
         })
+
+        this.player.update()
     }
 }

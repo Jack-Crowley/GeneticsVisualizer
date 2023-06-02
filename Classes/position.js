@@ -10,6 +10,10 @@ class Position {
         this.xPos+=this.vector.x
         this.yPos+=this.vector.y
     }
+
+    setVector(v1) {
+        this.vector = v1;
+    }
 }
 
 class Vector {
@@ -30,7 +34,7 @@ class Vector {
     }
 
     clone() {
-        return new Vector(x,y);
+        return new Vector(this.x,this.y);
     }
 
     
