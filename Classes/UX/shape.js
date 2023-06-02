@@ -13,4 +13,6 @@ class Shape {
     update() {
         this.draw();
     }
+
+    collide(otherShape) {}
 }
