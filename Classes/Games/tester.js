@@ -1,7 +1,7 @@
 class Tester extends Game{
     constructor (score, board, simulation) {
         let shape = new Circle(new Position(), 20, "#ff0000");
-        (!simulation) ? board.createMover(new Player(shape)) : board.createMover(new Agent(shape))        
+        (!simulation) ? board.createMover(new Player(shape)) : board.createMover(new Agent(null, shape))        
 
         console.log(board.mover)
 
@@ -19,7 +19,7 @@ class Tester extends Game{
             s.collisions.push(board.mover.shape)
         }
 
-        let s = new Circle(new Position(250,250), 5, "#ffff00", "#ffff00", () => {endSimulation()})
+        let s = new Circle(new Position(250,250), 5, "#ffff00", "#ffff00", () => {end()})
 
         board.addShape(s)
         s.collisions.push(board.mover.shape)
