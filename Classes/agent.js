@@ -1,9 +1,10 @@
-class Player {
+class Agent extends Player {
 
     // Basic Constructor
-    constructor(inputsHeaders, agent, weights) {
+    constructor(inputsHeaders, weights, location=0) {
+        super(location);
         this.inputsHeaders = inputsHeaders;
-        this.agent = agent;
+        this.player = player;
         this.weights = weights;
 
         this.nn = null; // Create neural net with first layer headers in inputsHeaders and weights
@@ -16,11 +17,11 @@ class Player {
         this.inputs = [];
 
         this.inputsHeaders.forEach((input) => {
-            this.inputs.push(agent.calcInput(input));
+            this.inputs.push(player.calcInput(input));
         })
     }
 
-    get move() {
+    move() {
         this.setMoves();
         return this.calculateMove();
     }
