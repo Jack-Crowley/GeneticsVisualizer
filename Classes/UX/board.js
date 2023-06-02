@@ -8,8 +8,8 @@ class Board {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    createPlayer(shape) {
-        this.player = new Player(shape);
+    createMover(mover) {
+        this.mover = mover;
     }
 
     addShape(shape) {
@@ -22,7 +22,7 @@ class Board {
             shape.update()
         })
 
-        this.player.update()
+        this.mover.move()
     }
 
     deleteShape(shape) {
