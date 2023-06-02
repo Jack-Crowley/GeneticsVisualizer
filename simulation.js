@@ -2,11 +2,11 @@ sb.addEventListener("click", startSimulation)
 gb.addEventListener("click", startSimulation)
 eb.addEventListener("click", endSimulation)
 
-
 let game;
 
 function startSimulation() {
-    game = new Tester(addScore, new Board(canvas));
+    board = new Board(canvas);
+    game = new Tester(addScore, board);
 
     running = true;
     
