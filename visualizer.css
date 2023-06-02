@@ -1,10 +1,10 @@
-a.start {
+a.start, a.game {
     background-color: #337E0D;
     margin-top: 20px;
     display: block;
 }
 
-a.start, a.end {
+a.start, a.end, a.game {
     color:white;
     border: 1px black solid;
     text-decoration: none;
