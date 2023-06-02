@@ -3,7 +3,7 @@ class Board {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
 
-        this.shapes= [new Circle(new Position(0,0,10,10),this.ctx,20,"#ff0000")];
+        this.shapes= [new Circle(new Position(0,0,1,1),this.ctx,20,"#ff0000")];
     }
 
     clear() {

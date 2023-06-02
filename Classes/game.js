@@ -3,12 +3,11 @@ class Game {
         this.score = score;
         this.board = board;
 
-        console.log(this.board)
         this.interval = -1;
     }
 
     start() {
-        this.interval = setInterval(this.frame, 100, this.board)
+        this.interval = setInterval(this.frame, 10, this.board)
     }
 
     frame(board) {

@@ -1,46 +1,14 @@
 class Position {
 
     constructor(xPos=0, yPos=0, xAcceleration=0, yAcceleration=0) {
-        this.setXPos(xPos)
-        this.setXAcceleration(xAcceleration)
-        this.setYPos(yPos)
-        this.setYAcceleration(yAcceleration)
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.xAcceleration = xAcceleration;
+        this.yAcceleration = yAcceleration;
     }
 
-    setXPos(newX) {
-        this.xPos = newX;
-    }
-
-    setYPos(newY) {
-        this.yPos = newY;
-    }
-
-    setXAcceleration(newX) {
-        this.xPos = newX;
-    }
-
-    setYAcceleration(newY) {
-        this.yPos = newY;
-    }
-
-    XPos() {
-        return this.xPos;
-    }
-
-    YPos() {
-        return this.yPos;
-    }
-
-    XAcceleration() {
-        return this.xAcceleration;
-    }
-
-    YAcceleration() {
-        return this.yAcceleration;
-    }
-
-    applyVectors() {
-        this.setXPos(this.XPos()+this.XAcceleration())
-        this.setYPos(this.YPos()+this.YAcceleration())
+    applyVelocity() {
+        this.xPos+=this.xAcceleration
+        this.yPos+=this.yAcceleration
     }
 }

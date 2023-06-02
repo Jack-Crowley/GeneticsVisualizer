@@ -7,7 +7,7 @@ class Circle extends Shape {
 
     draw() {
         this.c.beginPath();
-        this.c.arc(this.position.xPos(), this.position.yPos(), this.r, 0, 2 * Math.PI);
+        this.c.arc(this.position.xPos, this.position.yPos, this.r, 0, 2 * Math.PI);
         this.c.lineWidth = 3;
         this.c.strokeStyle = this.strokeColor;
 
@@ -23,7 +23,6 @@ class Circle extends Shape {
     }
 
     update() {
-        console.log(this.position);
         this.position.applyVelocity()
         super.update()
     }
