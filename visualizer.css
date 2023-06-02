@@ -1,6 +1,7 @@
 a.start {
     background-color: #337E0D;
     margin-top: 20px;
+    display: block;
 }
 
 a.start, a.end {
@@ -9,11 +10,11 @@ a.start, a.end {
     text-decoration: none;
     padding: 10px;
     margin: 10px;
-    display: block;
     max-width: 200px;
 }
 
 a.end {
+    display: none;
     background-color: red;
 }
 
