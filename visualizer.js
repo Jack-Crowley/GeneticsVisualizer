@@ -8,9 +8,11 @@ const addScore = (amount) => {score.textContent = Number(score.textContent)+amou
 sb.addEventListener("click", startSimulation)
 eb.addEventListener("click", endSimulation)
 
-let game = new Tester(addScore, new Board(canvas))
+let game;
 
 function startSimulation() {
+    game = new Tester(addScore, new Board(canvas));
+
     running = true;
     
     sb.style.display = "none";

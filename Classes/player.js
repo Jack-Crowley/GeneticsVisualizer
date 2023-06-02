@@ -1,7 +1,7 @@
 class Player {
 
-    constructor(location=new Location()) {
-        this.location = location;
+    constructor(position=new Position()) {
+        this.position = position;
 
         // UpPress, UpHold, DownPress, DownHold
         this.inputHandler = new KeyInputHandler()
