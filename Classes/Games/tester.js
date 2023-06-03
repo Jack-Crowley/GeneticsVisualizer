@@ -22,24 +22,26 @@ class Tester extends Game{
         this.createMap()
     }
 
-    
-
     createMap() {
-        this.movers.forEach((mover) => {
-            for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 50; i++) {
+            this.movers.forEach((mover) => {
                 let s = new Circle(mover.board, new Position(Math.random()*canvas.width, Math.random()*canvas.height), 5, "#00ff00", {fillColor: "#00ff00", onCollide: () => {mover.addScore(50)}})
     
                 mover.board.addShape(s)
                 s.collisions.push(mover.shape)
-            }
-    
-            for (let i = 0; i < 15; i++) {
+            })
+        }
+
+        for (let i = 0; i < 15; i++) {
+            this.movers.forEach((mover) => {
                 let s = new Circle(mover.board, new Position(Math.random()*canvas.width, Math.random()*canvas.height), 5, "#0000ff", {fillColor: "#0000ff", onCollide: () => {mover.addScore(-50)}})
-    
+
                 mover.board.addShape(s)
                 s.collisions.push(mover.shape)
-            }
-    
+            })
+        }
+
+        this.movers.forEach((mover) => {
             let s = new Circle(mover.board, new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {end()}})
     
             mover.board.addShape(s)

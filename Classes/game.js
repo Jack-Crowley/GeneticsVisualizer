@@ -34,9 +34,12 @@ class Game {
 
     }
 
-    addShape(shape) {
+    addShape(shape, collisions = []) {
         this.movers.forEach((mover) => {
             mover.board.addShape(shape)
+            collisions.forEach((collision) => {
+                shape.collisions.push(collision)
+            })
         })
     }
 
