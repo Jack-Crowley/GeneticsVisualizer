@@ -9,9 +9,7 @@ function start(simulation) {
 
     setScore(0)
 
-    board = new Board(canvas);
-
-    game = new Tester(addScore, board, simulation);
+    game = new Tester(simulation);
 
     sb.style.display = "none";
     eb.style.display = "block";
@@ -22,8 +20,6 @@ function start(simulation) {
 
 function end() {
     running = false;
-
-    addScore(3)
 
     sb.style.display = "block";
     gb.style.display = "block";

@@ -1,7 +1,7 @@
 class Circle extends Shape {
 
-    constructor(position,r,strokeColor,{fillColor=null,onCollide=null,canLeaveEdge=true} = {}) {
-        super(position,strokeColor,fillColor,onCollide,canLeaveEdge);
+    constructor(board,position,r,strokeColor,{fillColor=null,onCollide=null,canLeaveEdge=true} = {}) {
+        super(board,position,strokeColor,fillColor,onCollide,canLeaveEdge);
         this.r=r;
     }
 
@@ -45,7 +45,7 @@ class Circle extends Shape {
 
     collide(otherShape) {
         let x = Math.sqrt((otherShape.position.xPos-this.position.xPos)**2+(otherShape.position.yPos-this.position.yPos)**2) < Math.max(this.r, otherShape.r);
-        if (x) board.deleteShape(this);
+        if (x) this.board.deleteShape(this);
         return x;
     }
 

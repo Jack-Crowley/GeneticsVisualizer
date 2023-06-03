@@ -1,23 +1,43 @@
 class Game {
-    constructor(score, board, simulation) {
+    constructor(score, simulation) {
         this.score = score;
-        this.board = board;
+        this.simulation = simulation
 
         this.taskIDs = [];
 
-        this.createMap()
+        this.board = null;
+
+        this.movers = [];
+        this.mover = null;
+    }
+
+    setMover(mover) {
+        this.mover = mover;
+    }
+
+    addMover(mover) {
+        this.movers.push(mover)
     }
 
     start() {
-        this.taskIDs.push(setInterval(this.frame, 10, this.board))
-    }
-
-    frame(board) {
-        board.update()
+        this.taskIDs.push(setInterval(() => {
+            setScore(this.mover.score)
+            this.mover.board.draw()
+            this.movers.forEach((mover) => {
+                mover.move()
+                mover.board.update()
+            })
+        }, 10))
     }
 
     createMap() {
 
+    }
+
+    addShape(shape) {
+        this.movers.forEach((mover) => {
+            mover.board.addShape(shape)
+        })
     }
 
     end() {

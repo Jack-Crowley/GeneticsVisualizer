@@ -1,6 +1,5 @@
 class Board {
-    constructor(canvas) {
-        this.canvas = canvas;
+    constructor() {
         this.shapes= [];
     }
 
@@ -8,21 +7,21 @@ class Board {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    createMover(mover) {
-        this.mover = mover;
-    }
-
     addShape(shape) {
         this.shapes.push(shape)
     }
 
-    update() {
+    draw() {
         this.clear()
+        this.shapes.forEach((shape) => {
+            shape.draw()
+        })
+    }
+
+    update() {
         this.shapes.forEach((shape) => {
             shape.update()
         })
-
-        this.mover.move()
     }
 
     deleteShape(shape) {

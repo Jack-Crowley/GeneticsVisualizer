@@ -1,8 +1,8 @@
 class Agent extends Mover {
 
     // Basic Constructor
-    constructor(brain, shape) {
-        super(shape);
+    constructor(brain) {
+        super()
         this.brain = brain;
 
         this.nn = null; // Create neural net with first layer headers in inputsHeaders and weights
