@@ -23,6 +23,16 @@ class Game {
         mover.radioButton = document.createElement("input");
         mover.radioButton.setAttribute("type", "radio")
         mover.radioButton.setAttribute("name", "activeMover")
+        mover.radioButton.onclick = () => {
+            game.mover.shape.strokeColor = "#ff0000"
+            mover.shape.strokeColor = "#000"
+            game.mover = mover;
+            setScore(this.mover.score)
+            this.mover.board.draw()
+            this.movers.forEach((mover) => {
+                mover.draw()
+            })
+        };
         if (this.movers.length == 0) mover.radioButton.checked = true;
         x.appendChild(mover.radioButton)
         tr.appendChild(x)
@@ -44,18 +54,16 @@ class Game {
     }
 
     start() {
-        this.taskIDs.push(setInterval(() => {
-            setScore(this.mover.score)
-            this.mover.board.draw()
-            this.movers.forEach((mover) => {
-                mover.update()
-                mover.board.update()
-            })
-        }, 10))
+        this.taskIDs.push(setInterval(this.frame.bind(this), 10))
     }
 
-    createMap() {
-
+    frame() {
+        setScore(this.mover.score)
+        this.mover.board.draw()
+        this.movers.forEach((mover) => {
+            mover.update()
+            mover.board.update()
+        })
     }
 
     addShape(shape, collisions = []) {

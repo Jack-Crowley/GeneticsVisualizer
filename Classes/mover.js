@@ -11,12 +11,15 @@ class Mover {
         this.shape = shape; 
     }
 
+    draw() {
+        this.shape.draw()
+    }
+
     update() {
         this.move()
         this.scoreField.textContent = this.score;
         this.finishedField.textContent = this.finished
         this.shape.update()
-        this.shape.draw()
     }
 
     addScore(score) {
