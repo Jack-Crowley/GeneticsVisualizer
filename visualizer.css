@@ -30,3 +30,28 @@ a.end {
 canvas.visualizer {
     border: 1px black solid;
 }
+
+.screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+table {
+    border-collapse: collapse;
+    width: 75%;
+    margin-top: 50px;
+}
+
+th {
+    padding: 10px;
+}
+
+tr {
+    border: 1px solid #b7b7b7;
+    text-align: center;
+    height: 50px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

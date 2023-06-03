@@ -2,7 +2,7 @@ class Agent extends Mover {
 
     // Basic Constructor
     constructor(brain) {
-        super()
+        super("Agent")
         this.brain = brain;
 
         this.nn = null; // Create neural net with first layer headers in inputsHeaders and weights
@@ -12,7 +12,6 @@ class Agent extends Mover {
 
     move() {
         this.shape.position.setVector(new Vector((Math.random()*2-1)*4, (Math.random()*2-1)*4))
-        super.move()
     }
 
     calculateMove() {

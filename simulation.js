@@ -5,6 +5,8 @@ eb.addEventListener("click", end)
 let game;
 
 function start(simulation) {
+    table.innerHTML=''
+
     running = true;
 
     setScore(0)

@@ -1,14 +1,13 @@
 class Player extends Mover {
 
     constructor() {
-        super()
+        super("Player")
         // UpPress, UpHold, DownPress, DownHold
         this.inputHandler = new KeyInputHandler()
     }
 
     move() {
         this.shape.position.setVector(this.inputHandler.getVector())
-        super.move()
     }
 }
 

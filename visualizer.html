@@ -8,19 +8,30 @@
     <link rel="stylesheet" href="./visualizer.css">
 </head>
 <body>
+    <div class="screen">
+        <div class="visualizer">
+            <a href="#" class="game">Test Game</a>
+            <a href="#" class="start">Run Simulation</a>
+            <a href="#" class="end">End Simulation</a>
     
-    <div class="visualizer">
-        <a href="#" class="game">Test Game</a>
-        <a href="#" class="start">Run Simulation</a>
-        <a href="#" class="end">End Simulation</a>
-
-        <h3>Score: <span class="scoreAmount">0</span></h3>
-
-        <canvas class="visualizer" height="500px" width="500px"></canvas>
-    </div>
-
-    <div class="table">
-        Hello
+            <h3>Score: <span class="scoreAmount">0</span></h3>
+    
+            <canvas class="visualizer" height="500px" width="500px"></canvas>
+        </div>
+    
+        <div class="table">
+            <table class="agentTable">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Type</th>
+                        <th>Score</th>
+                        <th>Finished</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
 
