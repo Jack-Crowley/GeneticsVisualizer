@@ -1,11 +1,13 @@
 class Circle extends Shape {
 
-    constructor(position,r,strokeColor,fillColor=null,onCollide=null) {
-        super(position,strokeColor,fillColor,onCollide);
+    constructor(position,r,strokeColor,{fillColor=null,onCollide=null,canLeaveEdge=true} = {}) {
+        super(position,strokeColor,fillColor,onCollide,canLeaveEdge);
         this.r=r;
     }
 
     draw() {
+        this.checkIfValidPos()
+
         ctx.beginPath();
         ctx.arc(this.position.xPos, this.position.yPos, this.r, 0, 2 * Math.PI);
         ctx.lineWidth = 3;
@@ -20,6 +22,25 @@ class Circle extends Shape {
         }
 
         ctx.closePath();
+    }
+
+    checkIfValidPos() {
+        if (!this.canLeaveEdge) {
+            if (this.position.xPos < this.r) {
+                this.position.xPos=this.r;
+            }
+            if (this.position.xPos > canvas.width-this.r) {
+                this.position.xPos=canvas.width-this.r;
+            }
+
+            if (this.position.yPos < this.r) {
+                this.position.yPos=this.r;
+            }
+            if (this.position.yPos > canvas.height-this.r) {
+                this.position.yPos=canvas.height-this.r;
+            }
+
+        }
     }
 
     collide(otherShape) {

@@ -11,7 +11,7 @@ class Agent extends Mover {
     }
 
     move() {
-        this.shape.position.setVector(new Vector(Math.random()*2-1, Math.random()*2-1))
+        this.shape.position.setVector(new Vector((Math.random()*2-1)*4, (Math.random()*2-1)*4))
         super.move()
     }
 

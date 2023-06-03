@@ -2,7 +2,6 @@ class Player extends Mover {
 
     constructor(shape) {
         super(shape);
-        this.shape = shape;
 
         // UpPress, UpHold, DownPress, DownHold
         this.inputHandler = new KeyInputHandler()

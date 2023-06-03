@@ -1,9 +1,11 @@
 class Game {
-    constructor(score, board) {
+    constructor(score, board, simulation) {
         this.score = score;
         this.board = board;
 
         this.taskIDs = [];
+
+        this.createMap()
     }
 
     start() {
@@ -12,6 +14,10 @@ class Game {
 
     frame(board) {
         board.update()
+    }
+
+    createMap() {
+
     }
 
     end() {

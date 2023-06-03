@@ -1,30 +1,34 @@
 class Tester extends Game{
     constructor (score, board, simulation) {
-        let shape = new Circle(new Position(), 20, "#ff0000");
-        (!simulation) ? board.createMover(new Player(shape)) : board.createMover(new Agent(null, shape))        
+        if (simulation) {
+            for (let i = 0; i < 10; i++) {
+                board.createMover(new Agent(null, new Circle(new Position(), 20, "#ff0000",{canLeaveEdge:false})))        
+            }   
+        }
+        else board.createMover(new Player(new Circle(new Position(), 20, "#ff0000", {canLeaveEdge:false})))
 
-        console.log(board.mover)
+        super(score, board, simulation);
+    }
 
+    createMap() {
         for (let i = 0; i < 10; i++) {
-            let s = new Circle(new Position(Math.random()*canvas.width, Math.random()*canvas.height), 5, "#00ff00", "#00ff00", () => {addScore(50)})
+            let s = new Circle(new Position(Math.random()*canvas.width, Math.random()*canvas.height), 5, "#00ff00", {fillColor: "#00ff00", onCollide: () => {addScore(50)}})
 
             board.addShape(s)
             s.collisions.push(board.mover.shape)
         }
 
         for (let i = 0; i < 5; i++) {
-            let s = new Circle(new Position(Math.random()*canvas.width, Math.random()*canvas.height), 5, "#0000ff", "#0000ff", () => {addScore(-50)})
+            let s = new Circle(new Position(Math.random()*canvas.width, Math.random()*canvas.height), 5, "#0000ff", {fillColor: "#0000ff", onCollide: () => {addScore(-50)}})
 
             board.addShape(s)
             s.collisions.push(board.mover.shape)
         }
 
-        let s = new Circle(new Position(250,250), 5, "#ffff00", "#ffff00", () => {end()})
+        let s = new Circle(new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {end()}})
 
         board.addShape(s)
         s.collisions.push(board.mover.shape)
-
-        super(score, board);
     }
 
     start() {

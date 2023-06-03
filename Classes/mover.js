@@ -1,6 +1,6 @@
 class Mover {
     constructor(shape) {
-
+        this.shape = shape;
     }
 
     move() {

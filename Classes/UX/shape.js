@@ -1,9 +1,10 @@
 class Shape {
-    constructor(position,strokeColor,fillColor,onCollide) {
+    constructor(position,strokeColor,fillColor,onCollide,canLeaveEdge) {
         this.position = position;
         this.strokeColor = strokeColor;
         this.fillColor = fillColor;
-        this.onCollide = onCollide
+        this.onCollide = onCollide;
+        this.canLeaveEdge = canLeaveEdge;
         this.collisions = []
     }
 
