@@ -1,3 +1,12 @@
+body, html {
+    margin:0;
+    padding:0;
+}
+
+body {
+    width: 100vw;
+}
+
 a.start, a.game {
     background-color: #337E0D;
     margin-top: 20px;
