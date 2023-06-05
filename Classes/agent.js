@@ -5,7 +5,13 @@ class Agent extends Mover {
         super("Agent")
         this.brain = brain;
 
-        this.nn = null; // Create neural net with first layer headers in inputsHeaders and weights
+        if (brain instanceof NeuralNetwork) {
+            this.brain = brain.copy();
+            this.brain.mutate(0.1);
+        } else {
+            this.brain = new NeuralNetwork(3, 5, 2);
+        }
+        // Create neural net with first layer headers in inputsHeaders and weights
         // Prob 3 layer (1 hidden) but not too sure
         // Weights and inputHeaders both arrays, with the 0 index of both representating same obj
     }
@@ -18,6 +24,8 @@ class Agent extends Mover {
     calculateMove() {
         // TODO
         // creates predictions based off of this.inputs (which is an array)
+        let action = this.brain.predict([123, 182, 812])
+        console.log(action);
     }
 
     get fitness() {

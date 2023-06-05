@@ -26,6 +26,16 @@ class NeuralNetwork {
 		});
 	}
 
+	randomGaussian()  {
+		do {
+		  var x1 = Math.random(2) - 1;
+		  var x2 = Math.random(2) - 1;
+		  var w = x1 * x1 + x2 * x2;
+		} while (w >= 1);
+		w = Math.sqrt((-2 * Math.log(w))/w);
+		return x1 * w;
+	  }
+
 	mutate(rate) {
 		tf.tidy(() => {
 			const weights = this.model.getWeights();
@@ -35,9 +45,9 @@ class NeuralNetwork {
 				let shape = weights[i].shape;
 				let values = tensor.dataSync().slice();
 				for (let j = 0; j < values.length; j++) {
-					if (random(1) < rate) {
+					if (Math.random(1) < rate) {
 						let w = values[j];
-						values[j] = w + randomGaussian();
+						values[j] = w + this.randomGaussian();
 					}
 				}
 				let newTensor = tf.tensor(values, shape);
