@@ -1,29 +1,52 @@
 class Circle extends Shape {
 
-    constructor(position,c,r,strokeColor,fillColor=null) {
-        super(position,c,strokeColor,fillColor);
+    constructor(board,position,r,strokeColor,{fillColor=null,onCollide=null,canLeaveEdge=true} = {}) {
+        super(board,position,strokeColor,fillColor,onCollide,canLeaveEdge);
         this.r=r;
     }
 
     draw() {
-        this.c.beginPath();
-        this.c.arc(this.position.xPos, this.position.yPos, this.r, 0, 2 * Math.PI);
-        this.c.lineWidth = 3;
-        this.c.strokeStyle = this.strokeColor;
+        this.checkIfValidPos()
+
+        ctx.beginPath();
+        ctx.arc(this.position.xPos, this.position.yPos, this.r, 0, 2 * Math.PI);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = this.strokeColor;
 
         if (this.fillColor == null) {
-            this.c.stroke();
+            ctx.stroke();
         }
         else {
-            this.c.fillStyle = this.fillColor;
-            this.c.fill();
+            ctx.fillStyle = this.fillColor;
+            ctx.fill();
         }
 
-        this.c.closePath();
+        ctx.closePath();
+    }
+
+    checkIfValidPos() {
+        if (!this.canLeaveEdge) {
+            if (this.position.xPos < this.r) {
+                this.position.xPos=this.r;
+            }
+            if (this.position.xPos > canvas.width-this.r) {
+                this.position.xPos=canvas.width-this.r;
+            }
+
+            if (this.position.yPos < this.r) {
+                this.position.yPos=this.r;
+            }
+            if (this.position.yPos > canvas.height-this.r) {
+                this.position.yPos=canvas.height-this.r;
+            }
+
+        }
     }
 
     collide(otherShape) {
-        return Math.sqrt((otherShape.position.xPos+this.position.xPos)**2+(otherShape.position.yPos+this.position.yPos)) < this.r
+        let x = Math.sqrt((otherShape.position.xPos-this.position.xPos)**2+(otherShape.position.yPos-this.position.yPos)**2) < Math.max(this.r, otherShape.r);
+        if (x) this.board.deleteShape(this);
+        return x;
     }
 
 }

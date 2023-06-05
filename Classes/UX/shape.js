@@ -1,20 +1,24 @@
 class Shape {
-    constructor(position,c,strokeColor,fillColor) {
+    constructor(board,position,strokeColor,fillColor,onCollide,canLeaveEdge) {
+        this.board = board;
         this.position = position;
-        this.c = c;
         this.strokeColor = strokeColor;
         this.fillColor = fillColor;
+        this.onCollide = onCollide;
+        this.canLeaveEdge = canLeaveEdge;
         this.collisions = []
     }
 
-    draw() {
-
-    }
+    draw() {}
 
     update() {
-        this.draw();
+        this.draw()
         this.position.applyVelocity()
-        this.collisions.forEach((obj) => {collide(obj)})
+        this.collisions.forEach((obj) => {
+            if (this.collide(obj) && this.onCollide!=null) {
+                this.onCollide()
+            }
+        })
     }
 
     collide(otherShape) {}

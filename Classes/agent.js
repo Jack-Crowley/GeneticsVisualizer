@@ -1,41 +1,29 @@
-class Agent extends Player {
+class Agent extends Mover {
 
     // Basic Constructor
-    constructor(nn, location=0) {
-        super(location);
-        // this.inputsHeaders = inputsHeaders;
-        // this.player = player;
-        // this.weights = weights;
+    constructor(brain) {
+        super("Agent")
+        this.brain = brain;
 
-        if (nn instanceof NeuralNetwork) {
-            this.nn = nn.copy();
-            this.nn.mutate(0.1);
+        if (brain instanceof NeuralNetwork) {
+            this.brain = brain.copy();
+            this.brain.mutate(0.1);
         } else {
-            this.nn = new NeuralNetwork(3, 5, 2);
+            this.brain = new NeuralNetwork(3, 5, 2);
         }
         // Create neural net with first layer headers in inputsHeaders and weights
         // Prob 3 layer (1 hidden) but not too sure
         // Weights and inputHeaders both arrays, with the 0 index of both representating same obj
     }
 
-    // Calculates inputs and stores in this.inputs
-    setMoves() {
-        this.inputs = [];
-
-        this.inputsHeaders.forEach((input) => {
-            this.inputs.push(player.calcInput(input));
-        })
-    }
-
     move() {
-        this.setMoves();
-        return this.calculateMove();
+        this.shape.position.setVector(new Vector((Math.random()*2-1)*4, (Math.random()*2-1)*4))
     }
 
     calculateMove() {
         // TODO
         // creates predictions based off of this.inputs (which is an array)
-        let action = this.nn.predict([123, 182, 812])
+        let action = this.brain.predict([123, 182, 812])
         console.log(action);
     }
 
