@@ -1,7 +1,8 @@
 class Game {
-    constructor(score, simulation) {
-        this.score = score;
+    constructor(simulation, numPlayers) {
         this.simulation = simulation
+        this.numPlayers = numPlayers;
+        this.finishedPlayers = 0;
 
         this.taskIDs = [];
 
@@ -9,6 +10,11 @@ class Game {
 
         this.movers = [];
         this.mover = null;
+    }
+
+    playerFinished() {
+        this.finishedPlayers++;
+        if (this.finishedPlayers == this.numPlayers) {this.end()}
     }
 
     setMover(mover) {

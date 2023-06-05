@@ -7,6 +7,7 @@ class Player extends Mover {
     }
 
     move() {
+        if (this.finished) {return}
         this.shape.position.setVector(this.inputHandler.getVector())
     }
 }

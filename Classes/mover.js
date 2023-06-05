@@ -16,14 +16,14 @@ class Mover {
     }
 
     update() {
+        if (this.finished) {return}
         this.move()
-        this.scoreField.textContent = this.score;
-        this.finishedField.textContent = this.finished
         this.shape.update()
     }
 
     addScore(score) {
         this.score += score;
+        this.scoreField.textContent = this.getScore();
     }
 
     getScore() {
@@ -32,5 +32,10 @@ class Mover {
 
     resetScore() {
         this.score = 0;
+    }
+
+    endSimulation() {
+        this.finished = true
+        this.finishedField.textContent = this.finished;
     }
 }

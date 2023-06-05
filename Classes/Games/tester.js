@@ -1,9 +1,9 @@
 class Tester extends Game{
-    constructor (simulation) {
-        super(simulation);
+    constructor (simulation, numPlayers) {
+        super(simulation, numPlayers);
 
         if (simulation) {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < numPlayers; i++) {
                 let mov = new Agent(null);
                 this.addMover(mov);
                 mov.setShape(new Circle(mov.board, new Position(), 20, "#ff0000",{canLeaveEdge:false}))
@@ -46,7 +46,7 @@ class Tester extends Game{
         }
 
         this.movers.forEach((mover) => {
-            let s = new Circle(mover.board, new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {end()}})
+            let s = new Circle(mover.board, new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {mover.endSimulation();this.playerFinished()}})
     
             mover.board.addShape(s)
             s.collisions.push(mover.shape)

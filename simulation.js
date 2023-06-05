@@ -11,7 +11,7 @@ function start(simulation) {
 
     setScore(0)
 
-    game = new Tester(simulation);
+    game = new Tester(simulation, simulation ? 10 : 1);
 
     sb.style.display = "none";
     eb.style.display = "block";
