@@ -1,13 +1,19 @@
 class Agent extends Player {
 
     // Basic Constructor
-    constructor(inputsHeaders, weights, location=0) {
+    constructor(nn, location=0) {
         super(location);
-        this.inputsHeaders = inputsHeaders;
-        this.player = player;
-        this.weights = weights;
+        // this.inputsHeaders = inputsHeaders;
+        // this.player = player;
+        // this.weights = weights;
 
-        this.nn = null; // Create neural net with first layer headers in inputsHeaders and weights
+        if (nn instanceof NeuralNetwork) {
+            this.nn = nn.copy();
+            this.nn.mutate(0.1);
+        } else {
+            this.nn = new NeuralNetwork(3, 5, 2);
+        }
+        // Create neural net with first layer headers in inputsHeaders and weights
         // Prob 3 layer (1 hidden) but not too sure
         // Weights and inputHeaders both arrays, with the 0 index of both representating same obj
     }
@@ -29,6 +35,8 @@ class Agent extends Player {
     calculateMove() {
         // TODO
         // creates predictions based off of this.inputs (which is an array)
+        let action = this.nn.predict([123, 182, 812])
+        console.log(action);
     }
 
     get fitness() {
