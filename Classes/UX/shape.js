@@ -3,6 +3,7 @@ class Shape {
         this.name = name;
         this.board = board;
         this.position = position;
+        this.positionToPlayer = null;
         this.strokeColor = strokeColor;
         this.fillColor = fillColor;
         this.onCollide = onCollide;
@@ -22,4 +23,8 @@ class Shape {
     }
 
     collide(otherShape) {}
+
+    static compareTo(a,b) {
+        return b.positionToPlayer-a.positionToPlayer;
+    }
 }

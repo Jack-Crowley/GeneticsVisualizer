@@ -11,6 +11,25 @@ class Board {
         this.shapes.push(shape)
     }
 
+    getShapes(name) {
+        let list = [];
+        this.shapes.forEach((shape) => {
+            if (name == shape.name) {
+                list.push(shape);
+            }
+        })
+        return list;
+    }
+
+    sortPositions(player, name) {
+        let list = [];
+        this.getShapes(name).forEach((shape) => {            shape.positionToPlayer = Math.sqrt((shape.position.xPos-player.shape.position.xPos)**2+(shape.position.yPos-player.shape.position.yPos)**2);
+            list.push(shape);
+        })
+        list.sort(Shape.compareTo);
+        return list;
+    }
+
     draw() {
         clearCanvas()
         this.shapes.forEach((shape) => {
