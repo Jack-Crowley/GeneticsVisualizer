@@ -12,7 +12,7 @@ class Board {
     }
 
     draw() {
-        this.clear()
+        clearCanvas()
         this.shapes.forEach((shape) => {
             shape.draw()
         })

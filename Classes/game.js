@@ -32,6 +32,7 @@ class Game {
         this.mover.shape.strokeColor = "#000";
 
         this.createMap()
+        console.log(this.mover.shape)
         this.start()
     }
 
@@ -90,14 +91,16 @@ class Game {
     }
 
     start() {
-        this.taskIDs.push(setInterval(this.frame.bind(this), 10))
+        this.taskIDs.push(setInterval(this.frame.bind(this), 5))
     }
 
     frame() {
         setScore(this.mover.score)
+        clearCanvas()
         this.mover.board.draw()
         this.movers.forEach((mover) => {
             mover.update()
+            mover.draw()
             mover.board.update()
         })
     }

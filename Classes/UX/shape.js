@@ -13,7 +13,6 @@ class Shape {
     draw() {}
 
     update() {
-        this.draw()
         this.position.applyVelocity()
         this.collisions.forEach((obj) => {
             if (this.collide(obj) && this.onCollide!=null) {

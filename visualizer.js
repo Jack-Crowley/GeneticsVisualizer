@@ -7,3 +7,4 @@ const ctx = canvas.getContext('2d');
 const score = document.querySelector(".scoreAmount");
 const table = document.querySelector(".agentTable tbody")
 const setScore = (amount) => {score.textContent = amount}
+const clearCanvas = () => {ctx.clearRect(0, 0, canvas.width, canvas.height);}

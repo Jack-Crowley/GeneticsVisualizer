@@ -21,6 +21,10 @@ class Mover {
         this.shape.update()
     }
 
+    draw() {
+        this.shape.draw()
+    }
+
     addScore(score) {
         this.score += score;
         this.scoreField.textContent = this.getScore();

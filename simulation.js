@@ -18,7 +18,7 @@ function start(simulation) {
             game.end();
             console.log(bestMovers)
             game = new Tester(simulation, 10);
-        }, 5000)
+        }, 10000)
     }
     else {
         game = new Tester(simulation, 1);
