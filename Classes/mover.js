@@ -16,6 +16,7 @@ class Mover {
     }
 
     update() {
+        if (this.shape.position.xPos-this.shape.r <= 0 || this.shape.r+this.shape.position.xPos >= 500 || this.shape.position.yPos-this.shape.r <= 0 || this.shape.r+this.shape.position.yPos >= 500) {this.addScore(-5)}
         if (this.finished) {return}
         this.move()
         this.shape.update()
@@ -26,6 +27,7 @@ class Mover {
     }
 
     addScore(score) {
+        if (this.finished) {return}
         this.score += score;
         this.scoreField.textContent = this.getScore();
     }

@@ -34,7 +34,6 @@ class Agent extends Mover {
         let yellowXDist = 250-this.shape.position.xPos;
         let yellowYDist = 250-this.shape.position.yPos;
         let action = this.brain.predict([greenXDist,greenYDist,blueXDist,blueYDist,yellowXDist,yellowYDist,this.shape.position.xPos,this.shape.position.yPos])
-        console.log(action);
         this.shape.position.setVector(new Vector(action[0],action[1]));
     }
 
