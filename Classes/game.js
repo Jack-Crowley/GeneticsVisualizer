@@ -1,7 +1,9 @@
 class Game {
-    constructor(simulation, numPlayers) {
+    constructor(simulation, numPlayers, baseAgent, playerShape) {
         this.simulation = simulation
         this.numPlayers = numPlayers;
+        this.baseAgent = baseAgent;
+        
         this.finishedPlayers = 0;
 
         this.taskIDs = [];
@@ -10,6 +12,25 @@ class Game {
 
         this.movers = [];
         this.mover = null;
+
+        if (simulation) {
+            for (let i = 0; i < numPlayers; i++) {
+                let mov = new Agent(baseAgent);
+                this.addMover(mov);
+                mov.setShape(playerShape.cloneToBoard(mov.board))
+            }   
+        }
+        else {
+            let mov = new Player();
+            this.addMover(mov);
+            mov.setShape(playerShape.cloneToBoard(mov.board))
+        }
+
+        this.setMover(this.movers[0])
+        this.mover.setShape(new Circle(this.mover.board, new Position(), 20, "#000000",{canLeaveEdge:false}));
+
+        this.createMap()
+        this.start()
     }
 
     playerFinished() {

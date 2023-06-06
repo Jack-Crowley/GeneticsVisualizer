@@ -1,25 +1,6 @@
 class Tester extends Game{
-    constructor (simulation, numPlayers) {
-        super(simulation, numPlayers);
-
-        if (simulation) {
-            for (let i = 0; i < numPlayers; i++) {
-                let mov = new Agent(null);
-                this.addMover(mov);
-                mov.setShape(new Circle(mov.board, new Position(), 20, "#ff0000",{canLeaveEdge:false}))
-            }   
-        }
-        else {
-            let mov = new Player();
-            this.addMover(mov);
-            mov.setShape(new Circle(mov.board, new Position(), 20, "#ff0000",{canLeaveEdge:false}))
-        }
-
-        this.setMover(this.movers[0])
-        this.mover.setShape(new Circle(this.mover.board, new Position(), 20, "#000000",{canLeaveEdge:false}));
-
-
-        this.createMap()
+    constructor (simulation, numPlayers, baseAgent=null) {
+        super(simulation, numPlayers, baseAgent, new Circle(null, new Position(), 20, "#ff0000",{canLeaveEdge:false}));
     }
 
     createMap() {

@@ -14,6 +14,10 @@ class Position {
     setVector(v1) {
         this.vector = v1;
     }
+
+    clone() {
+        return new Position(this.xPos, this.yPos, this.vector.clone())
+    }
 }
 
 class Vector {
