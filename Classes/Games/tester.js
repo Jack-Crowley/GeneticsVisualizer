@@ -1,6 +1,6 @@
 class Tester extends Game{
     constructor (simulation, numPlayers, baseAgent=null) {
-        super(simulation, numPlayers, baseAgent, new Circle(null, new Position(), 20, "#ff0000",{canLeaveEdge:false}));
+        super(simulation, numPlayers, baseAgent, new Circle("Mover", null, new Position(), 20, "#ff0000",{canLeaveEdge:false}));
     }
 
     createMap() {
@@ -8,7 +8,7 @@ class Tester extends Game{
             let xPos = Math.random()*canvas.width;
             let yPos = Math.random()*canvas.height;
             this.movers.forEach((mover) => {
-                let s = new Circle(mover.board, new Position(xPos, yPos), 5, "#00ff00", {fillColor: "#00ff00", onCollide: () => {mover.addScore(50)}})
+                let s = new Circle("green", mover.board, new Position(xPos, yPos), 5, "#00ff00", {fillColor: "#00ff00", onCollide: () => {mover.addScore(50)}})
     
                 mover.board.addShape(s)
                 s.collisions.push(mover.shape)
@@ -19,7 +19,7 @@ class Tester extends Game{
             let xPos = Math.random()*canvas.width;
             let yPos = Math.random()*canvas.height;
             this.movers.forEach((mover) => {
-                let s = new Circle(mover.board, new Position(xPos, yPos), 5, "#0000ff", {fillColor: "#0000ff", onCollide: () => {mover.addScore(-50)}})
+                let s = new Circle("blue", mover.board, new Position(xPos, yPos), 5, "#0000ff", {fillColor: "#0000ff", onCollide: () => {mover.addScore(-50)}})
 
                 mover.board.addShape(s)
                 s.collisions.push(mover.shape)
@@ -27,7 +27,7 @@ class Tester extends Game{
         }
 
         this.movers.forEach((mover) => {
-            let s = new Circle(mover.board, new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {mover.endSimulation();this.playerFinished()}})
+            let s = new Circle("yellow", mover.board, new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {mover.endSimulation();this.playerFinished()}})
     
             mover.board.addShape(s)
             s.collisions.push(mover.shape)

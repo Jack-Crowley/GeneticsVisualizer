@@ -14,10 +14,10 @@ function start(simulation) {
         game = new Tester(simulation, 10);
         interval = setInterval(() => {
             table.innerHTML="";
+            bestMovers = game.getBestAgents(2)
             game.end();
-            console.log("TEST")
-            game = new Tester(simulation, 5);
-            console.log(game)
+            console.log(bestMovers)
+            game = new Tester(simulation, 10);
         }, 5000)
     }
     else {

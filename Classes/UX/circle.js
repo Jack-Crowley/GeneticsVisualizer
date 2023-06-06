@@ -1,7 +1,7 @@
 class Circle extends Shape {
 
-    constructor(board=null,position,r,strokeColor,{fillColor=null,onCollide=null,canLeaveEdge=true} = {}) {
-        super(board,position,strokeColor,fillColor,onCollide,canLeaveEdge);
+    constructor(name,board=null,position,r,strokeColor,{fillColor=null,onCollide=null,canLeaveEdge=true} = {}) {
+        super(name,board,position,strokeColor,fillColor,onCollide,canLeaveEdge);
         this.r=r;
     }
 
@@ -25,7 +25,7 @@ class Circle extends Shape {
     }
 
     cloneToBoard(board) {
-        return new Circle(board,this.position.clone(),this.r,this.strokeColor,{fillColor:this.fillColor,onCollide:this.onCollide,canLeaveEdge:this.canLeaveEdge})
+        return new Circle(this.name,board,this.position.clone(),this.r,this.strokeColor,{fillColor:this.fillColor,onCollide:this.onCollide,canLeaveEdge:this.canLeaveEdge})
     }
 
     checkIfValidPos() {

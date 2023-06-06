@@ -30,7 +30,7 @@ class Agent extends Mover {
 
     get fitness() {
         // Placeholder
-        return Math.random()*200-100;
+        return this.score;
     }
 
     createClones(number) {
@@ -40,5 +40,9 @@ class Agent extends Mover {
         }
 
         return clonesWeights;
+    }
+
+    static compareFn(a, b) {
+        return (a.fitness-b.fitness)
     }
 }

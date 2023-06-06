@@ -1,5 +1,6 @@
 class Shape {
-    constructor(board,position,strokeColor,fillColor,onCollide,canLeaveEdge) {
+    constructor(name,board,position,strokeColor,fillColor,onCollide,canLeaveEdge) {
+        this.name = name;
         this.board = board;
         this.position = position;
         this.strokeColor = strokeColor;

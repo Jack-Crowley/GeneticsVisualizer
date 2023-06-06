@@ -24,13 +24,22 @@ class Game {
             let mov = new Player();
             this.addMover(mov);
             mov.setShape(playerShape.cloneToBoard(mov.board))
+            console.log(mov.shape)
+
         }
 
         this.setMover(this.movers[0])
-        this.mover.setShape(new Circle(this.mover.board, new Position(), 20, "#000000",{canLeaveEdge:false}));
+        this.mover.shape.strokeColor = "#000";
 
         this.createMap()
         this.start()
+    }
+
+    getBestAgents(num) {
+        this.movers.sort(Agent.compareFn)
+        this.bestMovers = []
+        for (let i = 0; i < num; i++) {this.bestMovers.push(this.movers.pop())}
+        return this.bestMovers;
     }
 
     playerFinished() {
