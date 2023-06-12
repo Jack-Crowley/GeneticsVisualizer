@@ -52,6 +52,11 @@ class Game {
         return this.bestMovers;
     }
 
+    getBestAgent() {
+        this.movers.sort(Agent.compareFn)
+        return this.movers[this.movers.length-1]
+    }
+
     playerFinished() {
         this.finishedPlayers++;
         if (this.finishedPlayers == this.numPlayers) { this.end() }
