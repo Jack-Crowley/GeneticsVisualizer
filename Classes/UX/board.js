@@ -1,6 +1,7 @@
 class Board {
     constructor() {
         this.shapes= [];
+        this.shapeMap = new Map()
     }
 
     clear() {
@@ -8,26 +9,34 @@ class Board {
     }
 
     addShape(shape) {
-        this.shapes.push(shape)
+        let pos = 0;
+        while (pos < this.shapes.length-1 && this.shapes[pos].position.xPos < shape.position.xPos) {pos++}
+        this.shapes.splice(pos,0,shape)
+        if (!this.shapeMap.has(shape.name)) {
+            this.shapeMap.set(shape.name, [shape])
+        }
+        else {
+            let p = 0;
+            while (p < this.shapeMap.get(shape.name).length-1 && this.shapeMap.get(shape.name)[p].position.xPos < shape.position.xPos) {p++}
+            this.shapeMap.get(shape.name).splice(p,0,shape)
+        }
     }
 
     getShapes(name) {
-        let list = [];
-        this.shapes.forEach((shape) => {
-            if (name == shape.name) {
-                list.push(shape);
-            }
-        })
-        return list;
+        return this.shapeMap.get(name);
     }
 
-    sortPositions(player, name) {
-        let list = [];
-        this.getShapes(name).forEach((shape) => {            shape.positionToPlayer = Math.sqrt((shape.position.xPos-player.shape.position.xPos)**2+(shape.position.yPos-player.shape.position.yPos)**2);
-            list.push(shape);
+    getClosestShape(player, name) {
+        let closeValue = -1;
+        let closeShape = null;
+        this.getShapes(name).forEach((shape) => {
+            let x = Math.sqrt((shape.position.xPos-player.shape.position.xPos)**2+(shape.position.yPos-player.shape.position.yPos)**2);
+            if (closeValue == -1 || closeValue > x) {
+                closeValue = x
+                closeShape = shape;
+            }
         })
-        list.sort(Shape.compareTo);
-        return list;
+        return closeShape;
     }
 
     draw() {

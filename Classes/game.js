@@ -102,20 +102,24 @@ class Game {
     }
 
     start() {
+        this.d = new Date();
+        this.time = this.d.getTime();
         this.taskIDs.push(setInterval(this.frame.bind(this), 0))
     }
 
     frame() {
         this.lastFrame++;
         if (this.lastFrame >= getTimeBetweenFrames()) {
+            this.d = new Date();
+            this.newTime = this.d.getTime();
+            console.log(this.newTime-this.time)
+            this.time = this.newTime
             this.frameNum++;
             setScore(this.mover.score)
 
             if (renderButton.checked) {
-                clearCanvas()
                 this.mover.board.draw()
             }
-
 
             this.movers.forEach((mover) => {
                 mover.update()

@@ -16,17 +16,12 @@ class Agent extends Mover {
         // Weights and inputHeaders both arrays, with the 0 index of both representating same obj
     }
 
-    // move() {
-    //     if (this.finished) {return}
-    //     this.shape.position.setVector(new Vector((Math.random()*2-1)*4, (Math.random()*2-1)*4))
-    // }
-
     move() {
         // TODO
         // creates predictions based off of this.inputs (which is an array)
         if (this.finished) {return};
-        let closeGreen = this.board.sortPositions(this,"green").pop();
-        let closeBlue = this.board.sortPositions(this,"blue").pop();
+        let closeGreen = this.board.getClosestShape(this,"green");
+        let closeBlue = this.board.getClosestShape(this,"blue");
         let greenXDist = closeGreen.position.xPos-this.shape.position.xPos;
         let greenYDist = closeGreen.position.yPos-this.shape.position.yPos;
         let blueYDist = closeBlue.position.yPos-this.shape.position.yPos;

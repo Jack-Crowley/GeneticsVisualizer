@@ -8,18 +8,19 @@ class Shape {
         this.fillColor = fillColor;
         this.onCollide = onCollide;
         this.canLeaveEdge = canLeaveEdge;
-        this.collisions = []
+        this.collision = null
     }
 
     draw() {}
 
     update() {
         this.position.applyVelocity()
-        this.collisions.forEach((obj) => {
-            if (this.collide(obj) && this.onCollide!=null) {
-                this.onCollide()
-            }
-        })
+    }
+
+    checkCollision() {
+        if (this.collide(this.collision) && this.onCollide!=null) {
+            this.onCollide()
+        }
     }
 
     collide(otherShape) {}

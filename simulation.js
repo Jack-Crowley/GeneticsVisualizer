@@ -12,7 +12,7 @@ function start(simulation) {
     running = true;
 
     if (simulation) {
-        game = new Tester(simulation, 100);
+        game = new Tester(simulation, 10);
         interval = setInterval(() => {
             if (game.frameNum >= 500) {
                 simulationNum.textContent = parseInt(simulationNum.textContent)+1
@@ -20,7 +20,7 @@ function start(simulation) {
                 bestMovers = game.getBestAgents(2)
                 console.log("First: "+bestMovers[0].score+"; "+"Second: "+bestMovers[1].score+"; Average: "+((bestMovers[0].score+bestMovers[1].score)/2))
                 game.end();
-                game = new Tester(simulation, 100);
+                game = new Tester(simulation, 10);
             }
         }, 0)
     }

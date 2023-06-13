@@ -11,7 +11,7 @@ class Tester extends Game{
                 let s = new Circle("green", mover.board, new Position(xPos, yPos), 5, "#00ff00", {fillColor: "#00ff00", onCollide: () => {mover.addScore(50)}})
     
                 mover.board.addShape(s)
-                s.collisions.push(mover.shape)
+                s.collision = (mover.shape)
             })
         }
 
@@ -22,7 +22,7 @@ class Tester extends Game{
                 let s = new Circle("blue", mover.board, new Position(xPos, yPos), 5, "#0000ff", {fillColor: "#0000ff", onCollide: () => {mover.addScore(-50)}})
 
                 mover.board.addShape(s)
-                s.collisions.push(mover.shape)
+                s.collision = (mover.shape)
             })
         }
 
@@ -30,8 +30,10 @@ class Tester extends Game{
             let s = new Circle("yellow", mover.board, new Position(250,250), 5, "#ffff00", {fillColor: "#ffff00", onCollide: () => {mover.endSimulation();this.playerFinished()}})
     
             mover.board.addShape(s)
-            s.collisions.push(mover.shape)
+            s.collision = (mover.shape)
         })
+
+        console.log(this.mover.board.shapes)
     }
 
     start() {
