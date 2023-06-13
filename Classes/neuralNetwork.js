@@ -47,7 +47,7 @@ class NeuralNetwork {
 				for (let j = 0; j < values.length; j++) {
 					if (Math.random(1) < rate) {
 						let w = values[j];
-						values[j] = w + this.randomGaussian();
+						values[j] = w + ((Math.random(2)-1)*(Math.random()));
 					}
 				}
 				let newTensor = tf.tensor(values, shape);

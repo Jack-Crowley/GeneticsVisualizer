@@ -50,6 +50,13 @@ class Board {
         this.shapes.forEach((shape) => {
             shape.update()
         })
+        // let bestMover = game.getBestAgent()
+        // document.querySelectorAll('canvas.chart').forEach((canvas) => {
+        //     canvas.dataset.values = canvas.dataset.values.split(',').slice(0,-1).join(',')
+        //     canvas.dataset.values += bestMover.score
+        //     console.log("Added: " + canvas.dataset.values)
+        //     createChart()
+        // })
     }
 
     deleteShape(shape) {
