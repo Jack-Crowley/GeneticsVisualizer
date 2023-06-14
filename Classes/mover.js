@@ -15,22 +15,12 @@ class Mover {
         this.shape.draw()
     }
 
-    binSearchForRange(x, start, end, min) {
-        if (start > end) return false;
-
-        let mid = Math.floor((start + end) / 2);
-
-        if (arr[mid] === x) return true;
-
-        if (arr[mid] > x)
-            return recursiveFunction(arr, x, start, mid - 1);
-        else
-            return recursiveFunction(arr, x, mid + 1, end);
-    }
-
     update() {
         if (this.shape.position.xPos - this.shape.r <= 0 || this.shape.r + this.shape.position.xPos >= 500 || this.shape.position.yPos - this.shape.r <= 0 || this.shape.r + this.shape.position.yPos >= 500) { this.addScore(-5) }
         if (this.finished) { return }
+        for (let i = this.board.shapes.length-1; i >= 0; i--) {
+            this.board.shapes[i].collide(this.shape)
+        }
         this.move()
         this.shape.update()
     }

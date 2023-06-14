@@ -1,3 +1,11 @@
+:root {
+    --primary: #cfdbd5;
+    --accent: #e8eddf;
+    --highlight: #f5cb5c;
+    --dark: #242423;
+    --background: #333533;
+}
+
 body, html {
     margin:0;
     padding:0;
@@ -5,6 +13,7 @@ body, html {
 
 body {
     width: 100vw;
+    background-color: var(--background);
 }
 
 a.start, a.game {
