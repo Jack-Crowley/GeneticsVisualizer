@@ -15,22 +15,58 @@ class Mover {
         this.shape.draw()
     }
 
-    binSearchForRange(x, start, end, min) {
-        if (start > end) return false;
+    binSearchForRange(minX, maxX, arr) {
+        let min = this.binSearchSide(minX,maxX,arr,Math.floor((maxX+minX)/2),false);
+        console.log(min)
+        let max = this.binSearchSide(minX,maxX,arr,Math.floor((maxX+minX)/2),true);
+        console.log(max)
+        return [min,max];
+    }
 
-        let mid = Math.floor((start + end) / 2);
-
-        if (arr[mid] === x) return true;
-
-        if (arr[mid] > x)
-            return recursiveFunction(arr, x, start, mid - 1);
-        else
-            return recursiveFunction(arr, x, mid + 1, end);
+    binSearchSide(minX, maxX, arr, mid, bool) {
+        if (maxX < minX || mid >= arr.length || mid < 0) return -1;
+        if (bool) {
+            if (arr[mid].position.xPos > maxX) {
+                return this.binSearchSide(minX,maxX,arr,mid-1,bool)
+            }
+            else if (mid < arr.length) {
+                if (arr[mid+1].position.xPos < maxX) {
+                    return this.binSearchSide(minX,maxX,arr,mid+1,bool);
+                }
+                else {
+                    console.log(mid);
+                    return mid;
+                }
+            }
+            else {
+                console.log(mid);
+                return mid;
+            }
+        }
+        else {
+            if (arr[mid].position.xPos < minX) {
+                return this.binSearchSide(minX,maxX,arr,mid+1,bool)
+            }
+            else if (mid > 0) {
+                if (arr[mid-1].position.xPos > minX) {
+                    return this.binSearchSide(minX,maxX,arr,mid-1,bool);
+                }
+                else {
+                    console.log(mid);
+                    return mid;
+                }
+            }
+            else {
+                console.log(mid);
+                return mid;
+            }
+        }
     }
 
     update() {
         if (this.shape.position.xPos - this.shape.r <= 0 || this.shape.r + this.shape.position.xPos >= 500 || this.shape.position.yPos - this.shape.r <= 0 || this.shape.r + this.shape.position.yPos >= 500) { this.addScore(-5) }
         if (this.finished) { return }
+        console.log(this.binSearchForRange(this.shape.position.xPos-this.shape.r,this.shape.position.xPos+this.shape.r,this.board.shapes));
         this.move()
         this.shape.update()
     }
