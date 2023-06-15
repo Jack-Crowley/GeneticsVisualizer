@@ -16,57 +16,54 @@ class Mover {
     }
 
     binSearchForRange(minX, maxX, arr) {
-        let min = this.binSearchSide(minX,maxX,arr,Math.floor((maxX+minX)/2),false);
-        console.log(min)
-        let max = this.binSearchSide(minX,maxX,arr,Math.floor((maxX+minX)/2),true);
-        console.log(max)
+        let max = this.binSearchSide(minX,maxX,arr,false);
+        let min = this.binSearchSide(minX,maxX,arr,true);
         return [min,max];
     }
 
-    binSearchSide(minX, maxX, arr, mid, bool) {
-        if (maxX < minX || mid >= arr.length || mid < 0) return -1;
-        if (bool) {
-            if (arr[mid].position.xPos > maxX) {
-                return this.binSearchSide(minX,maxX,arr,mid-1,bool)
-            }
-            else if (mid < arr.length) {
-                if (arr[mid+1].position.xPos < maxX) {
-                    return this.binSearchSide(minX,maxX,arr,mid+1,bool);
-                }
-                else {
-                    console.log(mid);
-                    return mid;
-                }
+    binSearchSide(l, r, arr, bool) {
+        let lowBound = 0;
+        let highBound = arr.length-1;
+        let mid;
+        while (highBound >= lowBound) {
+            mid = lowBound + Math.floor((highBound - lowBound) / 2);    
+            // If the element is present at the middle
+            // itself
+            if (bool && arr[mid] == l)
+                return mid;
+            else if (!bool && arr[mid] == r)
+                return mid;
+            // If element is smaller than mid, then
+            // it can only be present in left subarray
+            if (bool) {
+                if (arr[mid].position.xPos > l)
+                    highBound = mid - 1;
+                else
+                    lowBound = mid + 1
             }
             else {
-                console.log(mid);
-                return mid;
-            }
+                if (arr[mid].position.xPos < r)
+                    lowBound = mid + 1;
+                else
+                    highBound = mid - 1;
+            }   
         }
-        else {
-            if (arr[mid].position.xPos < minX) {
-                return this.binSearchSide(minX,maxX,arr,mid+1,bool)
-            }
-            else if (mid > 0) {
-                if (arr[mid-1].position.xPos > minX) {
-                    return this.binSearchSide(minX,maxX,arr,mid-1,bool);
-                }
-                else {
-                    console.log(mid);
-                    return mid;
-                }
-            }
-            else {
-                console.log(mid);
-                return mid;
-            }
-        }
+    
+        // We reach here when element is not
+        // present in array
+        if (bool) return lowBound;
+        else return highBound;
     }
 
     update() {
         if (this.shape.position.xPos - this.shape.r <= 0 || this.shape.r + this.shape.position.xPos >= 500 || this.shape.position.yPos - this.shape.r <= 0 || this.shape.r + this.shape.position.yPos >= 500) { this.addScore(-5) }
         if (this.finished) { return }
-        console.log(this.binSearchForRange(this.shape.position.xPos-this.shape.r,this.shape.position.xPos+this.shape.r,this.board.shapes));
+        let xArr = this.binSearchForRange(this.shape.position.xPos-this.shape.r,this.shape.position.xPos+this.shape.r,this.board.shapes);
+        if (xArr[0] != -1 && xArr[1] != -1) {
+            for (let i = xArr[1]; i >= xArr[0]; i--) {
+                this.board.shapes[i].checkCollision();
+            }
+        }
         this.move()
         this.shape.update()
     }
