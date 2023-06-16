@@ -4,63 +4,57 @@
     --highlight: #f5cb5c;
     --dark: #242423;
     --background: #333533;
-}
+  }
 
 body, html {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    background-color: var(--primary);
 }
 
 body {
     width: 100vw;
+    height: 100vh;
+}
+
+.content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 11fr 10fr;
+}
+
+.content > div {
+    height: 100%;
+}
+
+.editor {
     background-color: var(--background);
 }
 
-a.start, a.game {
-    background-color: #337E0D;
-    margin-top: 20px;
-    display: block;
+.display {
+    background-color: var(--dark);
 }
 
-a.start, a.end, a.game {
-    color:white;
-    border: 1px black solid;
-    text-decoration: none;
-    padding: 10px;
-    margin: 10px;
-    max-width: 200px;
-}
-
-a.end {
-    display: none;
-    background-color: red;
-}
-
-canvas.visualizer {
-    border: 1px black solid;
-}
-
-.screen {
+.model {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin: 50px 50px;
+    grid-template-columns: 500px 1fr;
+    grid-column-gap: 50px;
 }
 
-table {
-    border-collapse: collapse;
-    width: 75%;
-    margin-top: 50px;
-}
-
-th {
-    padding: 10px;
+.table h1 {
+    text-align: center;
+    margin-top: 0;
+    color: white;
 }
 
 tr {
-    border: 1px solid #b7b7b7;
-    text-align: center;
-    height: 50px;
+    background-color: #153243;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+tr:nth-child(odd) {
+    background-color: #284b63;
 }

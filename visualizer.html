@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,40 @@
     <title>Document</title>
     <link rel="stylesheet" href="./visualizer.css">
 </head>
+
 <body>
-    <div class="screen">
+    <div class="content">
+        <div class="editor"></div>
+        <div class="display">
+            <div class="model">
+                <canvas class="visualizer" height="500px" width="500px"></canvas>
+                <div class="table">
+                    <h1>Models</h1>
+                    <table class="agentTable">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="radio" name="" id="">                                </td>
+                                <td><p>TESTING</p>                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="" id="">                                </td>
+                                <td><p>TESTING</p>                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="buttons"></div>
+            <div class="settings"></div>
+        </div>
+    </div>
+    <!-- <div class="screen">
         <div class="visualizer">
             <a href="#" class="game">Test Game</a>
             <a href="#" class="start">Run Simulation</a>
@@ -16,7 +49,6 @@
     
             <h3>Score: <span class="scoreAmount">0</span></h3>
     
-            <canvas class="visualizer" height="500px" width="500px"></canvas>
             <div class="agentStuff">
                 <h1>Simulation Iteration #<span class="simulationNum">1</span></h1>
                 <input class="frameTime" type="range" name="" id="" min="0" max="10" value="5" step=".01">
@@ -24,23 +56,11 @@
                 <input type="checkbox" name="render" id="" class="render" checked="true">
                 <label for="render">Render Canvas</label>
             </div>
-        </div>
-    
-        <div class="table">
-            <table class="agentTable">
-                <thead>
-                    <tr>
-                        <th>Select</th>
-                        <th>Type</th>
-                        <th>Score</th>
-                        <th>Finished</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+        </div> -->
 
-        <!-- <div class="col s12 white-text">
+    <!--  -->
+
+    <!-- <div class="col s12 white-text">
             <canvas class="chart" data-values ='0' data-title = 'Top Score' data-tabs = '3' data-chart='Players' style="background-color: #0c0b10;" height="150px"></canvas>
         </div> -->
     </div>
@@ -76,4 +96,5 @@
     <script src="./simulation.js"></script>
     <!-- <script src="./charts.js"></script> -->
 </body>
+
 </html>
