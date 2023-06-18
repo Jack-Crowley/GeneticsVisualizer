@@ -125,7 +125,7 @@ tr:nth-child(even), thead tr {
 }
 
 .status button {
-    padding: 20px 0;
+    padding: 5px 0;
     font-size: 20px;
     border: 1px solid black;
     border-radius: 10px;
@@ -137,6 +137,31 @@ tr:nth-child(even), thead tr {
 
 .stop {
     background-color: rgb(140, 1, 1);
+}
+
+.pause {
+    height:50px;
+    width:70px;
+}
+
+.restart {
+    height:50px;
+    width:50px;
+}
+
+.continue {
+    height: 50px;
+    width: 50px;
+}
+
+.play {
+    height: 50px;
+    width: 50px;
+}
+
+.start {
+    height:50px;
+    width: 60px;
 }
 
 .resume {
