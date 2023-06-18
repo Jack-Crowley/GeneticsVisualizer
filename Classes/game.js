@@ -3,6 +3,7 @@ class Game {
         this.simulation = simulation
         this.numPlayers = numPlayers;
         this.baseAgent = baseAgent;
+        this.avgFrame = [];
 
         this.finishedPlayers = 0;
 
@@ -114,12 +115,19 @@ class Game {
 
     frame() {
         this.lastFrame++;
+        this.avgFrame.push(this.newTime-this.time)
+        let frames = 0;
+        for (let i = 0; i < this.avgFrame.length; i++) {
+            frames += this.avgFrame[i]
+        }
+        avgFrameSetting.textContent = frames/this.avgFrame.length.toString();
         if (this.lastFrame >= getTimeBetweenFrames()) {
             this.d = new Date();
             this.newTime = this.d.getTime();
             console.log(this.newTime-this.time)
             this.time = this.newTime
             this.frameNum++;
+            frameSetting.textContent = this.frameNum.toString();
             setScore(this.mover.score)
 
             if (renderButton.checked) {
@@ -132,6 +140,11 @@ class Game {
                 mover.board.update()
             })
             this.lastFrame = 0;
+            let score = 0;
+            for(let i = 0; i < this.movers.length; i++) {
+                score += this.movers[i].score;
+            }
+            avgScoreSetting.textContent = score/this.movers.length.toString();
         }
     }
 
