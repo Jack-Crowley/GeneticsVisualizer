@@ -14,6 +14,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    font-family: 'Geologica', sans-serif;
 }
 
 canvas {
@@ -43,11 +44,19 @@ body {
     background-color: var(--dark);
 }
 
-.model, .settings {
+.model {
     display: grid;
     margin: 50px 50px;
+    margin-bottom: 20px;
     grid-template-columns: 500px 1fr;
     grid-column-gap: 50px;
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+    margin: 0 50px;
 }
 
 .table h1 {
@@ -58,6 +67,9 @@ body {
 
 .table {
     overflow:auto;
+}
+
+.model .table {
     height: 500px;
 }
 
@@ -136,6 +148,8 @@ tr:nth-child(even), thead tr {
 .settingHeader {
     text-align: center;
     color: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .speed input {
@@ -157,4 +171,36 @@ tr:nth-child(even), thead tr {
 
 .exportButton {
     background-color: var(--highlight2);
+}
+
+.flickers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.flickers .settingHeader {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.flickers div label {
+    color: white;
+    font-size: 1vw;
+}
+
+.flickers div input {
+    margin-right: 20px
+}
+
+.stats .table {
+    margin-top: 0;
+}
+
+.stats h3{
+    color:white;
+    margin: 10px;
+}
+
+.stats h3 span {
+    float: right;
 }

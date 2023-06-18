@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./visualizer.css">
 </head>
 
@@ -51,8 +52,41 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="flickers"></div>
-                    <dis class="stats"></dis>
+                    <div class="flickers">
+                        <h1 class="settingHeader">Render</h1>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Canvas</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Frame</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Iteration</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Avg. Frame</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Best Agent</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Avg. Score</label>
+                        </div>
+                    </div>
+                    <dis class="stats">
+                        <h1 class="settingHeader">Statistic</h1>
+                        <h3>Frame: <span class="frameSetting"></span></h3>
+                        <h3>Iteration: <span class="iterationSetting"></span></h3>
+                        <h3>Best Agent: <span class="bestAgentSetting"></span></h3>
+                        <h3>Avg. Frame Time: <span class="avgFrameSetting"></span></h3>
+                        <h3>Avg. Score: <span class="avgScoreSetting"></span></h3>
+                    </dis>
                 </div>
             </div>
         </div>
