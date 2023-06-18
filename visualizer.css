@@ -223,6 +223,7 @@ canvas.disabled {
 }
 
 .eye img {
-    width: 30%;
+    width: 150px;
+    height: 150px;
     filter: blur(1px)
 }
