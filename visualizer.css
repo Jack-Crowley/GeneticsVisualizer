@@ -139,29 +139,9 @@ tr:nth-child(even), thead tr {
     background-color: rgb(140, 1, 1);
 }
 
-.pause {
-    height:50px;
-    width:70px;
-}
-
-.restart {
-    height:50px;
-    width:50px;
-}
-
-.continue {
+.pic {
     height: 50px;
     width: 50px;
-}
-
-.play {
-    height: 50px;
-    width: 50px;
-}
-
-.start {
-    height:50px;
-    width: 60px;
 }
 
 .resume {
