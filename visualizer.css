@@ -228,3 +228,33 @@ canvas.disabled {
     height: 150px;
     filter: blur(1px)
 }
+
+.editor {
+    padding-top: 50px;
+    overflow: auto;
+    height: 99vh;
+    max-height: 99vh;
+}
+
+.block {
+    background-color: var(--dark);
+    width: 80%;
+    border: 1px solid var(--accent);
+    margin-left: 10%;
+}
+
+.block .text {
+    margin: 50px;
+}
+
+textarea {
+    width: 100%;
+    background-color: var(--dark);
+    border: none;
+    resize: none;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    height: auto;
+    overflow: hidden;
+}
