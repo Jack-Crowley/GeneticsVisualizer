@@ -60,6 +60,7 @@ showAvgScore.addEventListener("change", () => {
     console.log(avgScoreSetting.parentElement.style.display)
     if (avgScoreSetting.parentElement.style.display === "none") avgScoreSetting.parentElement.style.display = "block";
     else avgScoreSetting.parentElement.style.display = "none";
+})
 const renderCanvas = document.querySelector(".rCanvas")
 const eye = document.querySelector(".eye")
 
