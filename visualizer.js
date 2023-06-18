@@ -78,3 +78,5 @@ renderCanvas.addEventListener('click', () => {
         eye.style.top = canvas.offsetTop+(canvas.height/2)-150/2+"px"
     }
 })
+
+console.log(tf.getBackend())
