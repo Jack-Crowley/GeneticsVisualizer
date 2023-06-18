@@ -4,6 +4,11 @@
     --highlight: #f5cb5c;
     --dark: #242423;
     --background: #333533;
+    --highlight2: #6CA0CC;
+    --table1: #404040;
+    --table2: #555555;
+    --scrollBar: #666666;
+    --scrollBarHover: #7a7a7a;
   }
 
 body, html {
@@ -38,7 +43,7 @@ body {
     background-color: var(--dark);
 }
 
-.model {
+.model, .settings {
     display: grid;
     margin: 50px 50px;
     grid-template-columns: 500px 1fr;
@@ -67,29 +72,89 @@ th {
 }
 
 tr {
-    border: 1px solid #000000;
+    border: 1px solid black;
     text-align: center;
-    background-color: #404040;
+    background-color: var(--table1);
     height: 50px;
 }
 
-thead tr  {
-    background-color: #555555;
-}
-
-tr:nth-child(even) {
-    background-color: #555555;
+tr:nth-child(even), thead tr {
+    background-color: var(--table2);
 }
 
 ::-webkit-scrollbar {
     width: 12px;
-    background-color: #242423;
-  }
+    background-color: var(--dark);
+}
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #666666;
-  }
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollBar);
+}
 
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #7a7a7a;
-  }
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollBarHover);
+}
+
+.status {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+.status .settingHeader {
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+.status button {
+    padding: 20px 0;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.reset {
+    background-color: rgb(95, 0, 0);
+}
+
+.stop {
+    background-color: rgb(140, 1, 1);
+}
+
+.resume {
+    background-color: rgb(141, 69, 2);
+}
+
+.run {
+    background-color: rgb(0, 137, 25);
+}
+
+.test {
+    background-color: rgb(0, 196, 183);
+}
+
+.settingHeader {
+    text-align: center;
+    color: white;
+}
+
+.speed input {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.export button {
+    display: block;
+    width: 80%;
+    margin-left: 10%;
+    padding: 10px 0;
+}
+
+.import {
+    margin-bottom: 10px;
+    background-color: var(--highlight);
+}
+
+.exportButton {
+    background-color: var(--highlight2);
+}
