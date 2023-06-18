@@ -29,7 +29,7 @@ function createChart() {
         };
 
         let data = {
-        labels: 'Iteration',
+        labels: canvas.dataset.labels.split(','),
         datasets: [{
             label: canvas.dataset.title,
             data: canvas.dataset.values.split(','),

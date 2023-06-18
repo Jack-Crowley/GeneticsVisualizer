@@ -25,6 +25,8 @@ function start(simulation) {
                     if (canvas.dataset.values !== "") canvas.dataset.values += ","
                     // canvas.dataset.values = canvas.dataset.values.split(',').slice(0,-1).join(',')
                     canvas.dataset.values += bestMovers[0].score
+                    // console.log("Labels: " + canvas.dataset.labels)
+                    canvas.dataset.labels += ",Gen " + canvas.dataset.labels.split(',').length
                     createChart()
                     console.log(canvas.dataset.values)
                 })
