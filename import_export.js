@@ -1,4 +1,11 @@
 
+ib.addEventListener("click", importNN)
+exb.addEventListener("click", exportNN)
+
+function importNN() {
+
+}
+
 function exportNN() {
     let bestMover = game.getBestAgent();
     let w = bestMover.brain.model.getWeights();
@@ -6,5 +13,8 @@ function exportNN() {
         name: "SampleGAV",
         weights: w
     }
+    
     // TODO: write data into json file; error handle user not having run the simulation or being in test game mode
+
+    console.log(network)
 }
