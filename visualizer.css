@@ -232,8 +232,7 @@ canvas.disabled {
 .editor {
     padding-top: 50px;
     overflow: auto;
-    height: 99vh;
-    max-height: 99vh;
+    max-height: 100%;
 }
 
 .block {
@@ -244,7 +243,7 @@ canvas.disabled {
 }
 
 .block .text {
-    margin: 50px;
+    margin: 10px;
 }
 
 textarea {
