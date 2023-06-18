@@ -5,6 +5,7 @@ const gb = document.querySelector(".game");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext('2d');
 const score = document.querySelector(".scoreAmount");
+const tableDiv = document.querySelector(".table")
 const table = document.querySelector(".agentTable tbody")
 const agentStuff = document.querySelector(".agentStuff")
 const simulationNum = document.querySelector(".simulationNum")
@@ -27,6 +28,8 @@ const avgScoreSetting = document.querySelector("span.avgScoreSetting")
 avgScoreSetting.textContent = "0";
 canvas.width = Number(window.getComputedStyle(canvas).getPropertyValue('width').split("px")[0])
 canvas.height = Number(window.getComputedStyle(canvas).getPropertyValue('height').split("px")[0])
+
+tableDiv.style.height = canvas.height+"px"
 
 ctx.beginPath();
 ctx.arc(1, 1, 10, 0, 2 * Math.PI);
