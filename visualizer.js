@@ -31,6 +31,36 @@ canvas.height = Number(window.getComputedStyle(canvas).getPropertyValue('height'
 
 tableDiv.style.height = canvas.height+"px"
 
+const showFrame = document.querySelector(".rFrames")
+showFrame.addEventListener("change", () => {
+    if (frameSetting.parentElement.style.display === "none") frameSetting.parentElement.style.display = "block";
+    else frameSetting.parentElement.style.display = "none";
+})
+
+const showIterations = document.querySelector(".rIterations")
+showIterations.addEventListener("change", () => {
+    if (iterationSetting.parentElement.style.display === "none") iterationSetting.parentElement.style.display = "block";
+    else iterationSetting.parentElement.style.display = "none";
+})
+
+const showAvgFrame = document.querySelector(".rAvgFrames")
+showAvgFrame.addEventListener("change", () => {
+    if (avgFrameSetting.parentElement.style.display === "none") avgFrameSetting.parentElement.style.display = "block";
+    else avgFrameSetting.parentElement.style.display = "none";
+})
+
+const showBestAgent = document.querySelector(".rBestAgent")
+showBestAgent.addEventListener("change", () => {
+    if (bestAgentSetting.parentElement.style.display === "none") bestAgentSetting.parentElement.style.display = "block";
+    else bestAgentSetting.parentElement.style.display = "none";
+})
+
+const showAvgScore = document.querySelector(".rAvgScore")
+showAvgScore.addEventListener("change", () => {
+    console.log(avgScoreSetting.parentElement.style.display)
+    if (avgScoreSetting.parentElement.style.display === "none") avgScoreSetting.parentElement.style.display = "block";
+    else avgScoreSetting.parentElement.style.display = "none";
+})
 const renderCanvas = document.querySelector(".rCanvas")
 const eye = document.querySelector(".eye")
 
