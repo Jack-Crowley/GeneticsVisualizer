@@ -15,3 +15,18 @@ const getTimeBetweenFrames = () => {return frameTimeInput.value}
 frameTimeInput.addEventListener("input", () => {frameTimeHeader.textContent = getTimeBetweenFrames()})
 const setScore = (amount) => {score.textContent = amount}
 const clearCanvas = () => {ctx.clearRect(0, 0, canvas.width, canvas.height);}
+
+const frameSetting = document.querySelector("span.frameSetting") // done
+frameSetting.textContent = "0";
+
+const iterationSetting = document.querySelector("span.iterationSetting") // done
+iterationSetting.textContent = "0";
+
+const bestAgentSetting = document.querySelector("span.bestAgentSetting") // done
+bestAgentSetting.textContent = "0";
+
+const avgFrameSetting = document.querySelector("span.avgFrameSetting") // done
+avgFrameSetting.textContent = "0";
+
+const avgScoreSetting = document.querySelector("span.avgScoreSetting")
+avgScoreSetting.textContent = "0";
