@@ -31,13 +31,6 @@ canvas.height = Number(window.getComputedStyle(canvas).getPropertyValue('height'
 
 tableDiv.style.height = canvas.height+"px"
 
-ctx.beginPath();
-ctx.arc(1, 1, 10, 0, 2 * Math.PI);
-ctx.lineWidth = 3;
-ctx.strokeStyle = "#0000000";
-ctx.stroke();
-ctx.closePath();
-
 const showFrame = document.querySelector(".rFrames")
 showFrame.addEventListener("change", () => {
     if (frameSetting.parentElement.style.display === "none") frameSetting.parentElement.style.display = "block";
@@ -67,4 +60,20 @@ showAvgScore.addEventListener("change", () => {
     console.log(avgScoreSetting.parentElement.style.display)
     if (avgScoreSetting.parentElement.style.display === "none") avgScoreSetting.parentElement.style.display = "block";
     else avgScoreSetting.parentElement.style.display = "none";
+const renderCanvas = document.querySelector(".rCanvas")
+const eye = document.querySelector(".eye")
+
+console.log(eye.style.width)
+
+renderCanvas.addEventListener('click', () => {
+    if (renderCanvas.checked) {
+        eye.style.display = "none"
+        canvas.classList.remove("disabled")
+    }
+    else {
+        eye.style.display = "block"
+        canvas.classList.add("disabled")
+        eye.style.left = canvas.offsetLeft+(canvas.width/2)-150/2+"px"
+        eye.style.top = canvas.offsetTop+(canvas.height/2)-150/2+"px"
+    }
 })
