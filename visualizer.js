@@ -15,3 +15,13 @@ const getTimeBetweenFrames = () => {return frameTimeInput.value}
 frameTimeInput.addEventListener("input", () => {frameTimeHeader.textContent = getTimeBetweenFrames()})
 const setScore = (amount) => {score.textContent = amount}
 const clearCanvas = () => {ctx.clearRect(0, 0, canvas.width, canvas.height);}
+
+canvas.width = Number(window.getComputedStyle(canvas).getPropertyValue('width').split("px")[0])
+canvas.height = Number(window.getComputedStyle(canvas).getPropertyValue('height').split("px")[0])
+
+ctx.beginPath();
+ctx.arc(1, 1, 10, 0, 2 * Math.PI);
+ctx.lineWidth = 3;
+ctx.strokeStyle = "#0000000";
+ctx.stroke();
+ctx.closePath();

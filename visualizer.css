@@ -29,7 +29,7 @@ body {
 .content {
     height: 100%;
     display: grid;
-    grid-template-columns: 11fr 10fr;
+    grid-template-columns: 10fr 11fr;
 }
 
 .content > div {
@@ -48,8 +48,14 @@ body {
     display: grid;
     margin: 50px 50px;
     margin-bottom: 20px;
-    grid-template-columns: 500px 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-column-gap: 50px;
+}
+
+canvas {
+    width: 100%;
+    aspect-ratio: 1/1;
+    min-width: 300px;
 }
 
 .settings {
