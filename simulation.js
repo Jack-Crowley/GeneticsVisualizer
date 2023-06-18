@@ -19,6 +19,7 @@ function start(simulation) {
                 simulationNum.textContent = parseInt(simulationNum.textContent)+1
                 table.innerHTML="";
                 bestMovers = game.getBestAgents(2)
+                bestAgentSetting.textContent = bestMovers[0].score.toString();
                 console.log("First: "+bestMovers[0].score+"; "+"Second: "+bestMovers[1].score+"; Average: "+((bestMovers[0].score+bestMovers[1].score)/2))
                 document.querySelectorAll('canvas.chart').forEach((canvas) => {
                     if (canvas.dataset.values !== "") canvas.dataset.values += ","
@@ -31,6 +32,7 @@ function start(simulation) {
                 })
                 game.end();
                 game = new Tester(simulation, numAgents);
+                iterationSetting.textContent = Number(iterationSetting.textContent)+1;
             }
         }, 0)
     }
