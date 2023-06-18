@@ -210,3 +210,19 @@ tr:nth-child(even), thead tr {
 .stats h3 span {
     float: right;
 }
+
+canvas.disabled {
+    background-color: var(--table2);
+    filter: blur(5px);
+}
+
+.eye {
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.eye img {
+    width: 30%;
+    filter: blur(1px)
+}
