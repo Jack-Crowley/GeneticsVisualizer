@@ -49,8 +49,12 @@ class Circle extends Shape {
 
     collide(otherShape) {
         let x = Math.sqrt((otherShape.position.xPos-this.position.xPos)**2+(otherShape.position.yPos-this.position.yPos)**2) < Math.max(this.r, otherShape.r);
-        if (x) this.board.deleteShape(this);
-        return x;
+        if (x) {
+            this.board.deleteShape(this);
+            this.onCollide()
+            this.board.draw()
+        }
+        
     }
 
 }

@@ -1,0 +1,72 @@
+{
+    "name":"Tester",
+    "created":"Date",
+    "player": {
+        "shape":{
+            "name":"Mover",
+            "startPos": {
+                "x":"0",
+                "y":"0"
+            },
+            "radius":"20",
+            "strokeColor":"#ff0000",
+            "canLeaveEdge":"false"
+        },
+        "movements": {
+            "65": {
+                "x":"-1",
+                "y":"0"
+            },
+            "68": {
+                "x":"1",
+                "y":"0"
+            },
+            "83": {
+                "x":"0",
+                "y":"1"
+            },
+            "87": {
+                "x":"0",
+                "y":"-1"
+            }
+        }
+    },
+    "map":[
+        {
+            "name":"green",
+            "x":["0","w"],
+            "y":["0","w"],
+            "radius":"5",
+            "strokeColor":"#00ff00",
+            "fillColor":"#00ff00",
+            "onCollide":{
+                "type":"points",
+                "amount":50
+            }
+        },
+        {
+            "name":"blue",
+            "x":["0","w"],
+            "y":["0","w"],
+            "radius":"5",
+            "strokeColor":"#0000ff",
+            "fillColor":"#0000ff",
+            "onCollide":{
+                "type":"points",
+                "amount":-50
+            }
+        },
+        {
+            "name":"yellow",
+            "x":"250",
+            "y":"250",
+            "radius":"5",
+            "strokeColor":"#ffff00",
+            "fillColor":"#ffff00",
+            "onCollide":{
+                "type":"status",
+                "newStatus":"end"
+            }
+        }
+    ]
+}

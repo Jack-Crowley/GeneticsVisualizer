@@ -1,52 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./visualizer.css">
 </head>
+
 <body>
-    <div class="screen">
-        <div class="visualizer">
-            <a href="#" class="game">Test Game</a>
-            <a href="#" class="start">Run Simulation</a>
-            <a href="#" class="end">End Simulation</a>
-    
-            <h3>Score: <span class="scoreAmount">0</span></h3>
-    
-            <canvas class="visualizer" height="500px" width="500px"></canvas>
-            <div class="agentStuff">
-                <h1>Simulation Iteration #<span class="simulationNum">1</span></h1>
-                <input class="frameTime" type="range" name="" id="" min="0" max="10" value="5" step=".01">
-                <h2>Time Between Frames <span class="frameTime">5</span> milliseconds</h2>
-                <input type="checkbox" name="render" id="" class="render" checked="true">
-                <label for="render">Render Canvas</label>
+    <div class="content">
+        <div class="editor">
+            <div class="block">
+                <div class="text">
+                    <textarea oninput="autoExpand(this)"></textarea>
+                </div>
             </div>
         </div>
-    
-        <div class="table">
-            <table class="agentTable">
-                <thead>
-                    <tr>
-                        <th>Select</th>
-                        <th>Type</th>
-                        <th>Score</th>
-                        <th>Finished</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <div class="col s12 white-text">
-            <canvas class="chart" data-labels = 'Gen' data-values ='0' data-title = 'Top Score' data-tabs = '3' data-chart='Players' style="background-color: #0c0b10;" height="150px"></canvas>
+        <div class="display">
+            <div class="model">
+                <canvas class="visualizer"></canvas>
+                <div class="table">
+                    <h1>Models</h1>
+                    <table class="agentTable">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="settings">
+                <div class="left">
+                    <div class="status">
+                        <h1 class="settingHeader">Status</h1>
+                        <button class="reset" title="Reset button"><img src="./Images/restoreWhite.png" alt="" class="pic"></button>
+                        <button class="stop" title="Stop button"><img src="./Images/stopWhite.png" alt="" class="pic"></button>
+                        <button class="resume" title="Resume button"><img src="./Images/continueWhite.png" alt="" class="pic"></button>
+                        <button class="run" title="Play button"><img src="./Images/startWhite.png" alt="" class="pic"></button>
+                        <button class="test" title="Test button"><img src="./Images/test.png" alt="" class="pic"></button>
+                    </div>
+                    <div class="speed">
+                        <h1 class="settingHeader">Speed: <span class="frameTime">5</span> milliseconds</h1>
+                        <input class="frameTime" type="range" name="" id="" min="0" max="10" value="5" step=".01">
+                    </div>
+                    <div class="export">
+                        <h1 class="settingHeader">Import/Export Games</h1>
+                        <button class="import">Import</button>
+                        <button class="exportButton">Export</button>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="flickers">
+                        <h1 class="settingHeader">Render</h1>
+                        <div>
+                            <input type="checkbox" name="canvas" id="" class="rCanvas" checked="true">
+                            <label for="canvas">Canvas</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="frames" id="" class="rFrames" checked="true">
+                            <label for="frames">Frame</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="iterations" id="" class="rIterations" checked="true">
+                            <label for="iterations">Iteration</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="avgFrames" id="" class="rAvgFrames" checked="true">
+                            <label for="avgFrames">Avg. Frame</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="bestAgent" id="" class="rBestAgent" checked="true">
+                            <label for="bestAgent">Best Agent</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="avgScores" id="" class="rAvgScore" checked="true">
+                            <label for="avgScores">Avg. Score</label>
+                        </div>
+                    </div>
+                    <dis class="stats">
+                        <h1 class="settingHeader">Statistic</h1>
+                        <h3>Frame: <span class="frameSetting"></span></h3>
+                        <h3>Iteration: <span class="iterationSetting"></span></h3>
+                        <h3>Best Agent: <span class="bestAgentSetting"></span></h3>
+                        <h3>Avg. Frame Time: <span class="avgFrameSetting"></span></h3>
+                        <h3>Avg. Score: <span class="avgScoreSetting"></span></h3>
+                    </dis>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="eye">
+        <img src="./Images/eye.png" alt="">
+    </div>
 
-
-
+    <!-- <div class="col s12 white-text">
+            <canvas class="chart" data-values ='0' data-title = 'Top Score' data-tabs = '3' data-chart='Players' style="background-color: #0c0b10;" height="150px"></canvas>
+        </div> -->
 
     <!-- Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
@@ -74,6 +131,7 @@
 
     <!-- Simulation -->
     <script src="./simulation.js"></script>
-    <script src="./charts.js"></script>
+    <!-- <script src="./charts.js"></script> -->
 </body>
+
 </html>
