@@ -58,6 +58,11 @@
                     </div>
                 </div>
                 <div class="right">
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Statistics')" id="defaultOpen">Statistics</button>
+                        <button class="tablinks" onclick="openCity(event, 'Chart')">Chart</button>
+                    </div>
+                    <div id="Statistics" class="tabcontent">
                     <div class="flickers">
                         <h1 class="settingHeader">Render</h1>
                         <div>
@@ -85,11 +90,6 @@
                             <label for="avgScores">Avg. Score</label>
                         </div>
                     </div>
-                    <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'Statistics')" id="defaultOpen">Statistics</button>
-                        <button class="tablinks" onclick="openCity(event, 'Chart')">Chart</button>
-                    </div>
-                    <div id="Statistics" class="tabcontent">
                         <dis class="stats">
                             <h1 class="settingHeader">Statistics</h1>
                             <h3>Frame: <span class="frameSetting"></span></h3>
