@@ -9,7 +9,7 @@ class Circle extends Shape {
         this.checkIfValidPos()
 
         ctx.beginPath();
-        ctx.arc(this.position.xPos, this.position.yPos, this.r, 0, 2 * Math.PI);
+        ctx.arc(this.calculatePoint(this.position.xPos), this.calculatePoint(this.position.yPos), this.r, 0, 2 * Math.PI);
         ctx.lineWidth = 3;
         ctx.strokeStyle = this.strokeColor;
 

@@ -91,16 +91,10 @@ class Game {
         x.appendChild(mover.radioButton)
         tr.appendChild(x)
 
-        mover.typeField = document.createElement("td")
-        mover.typeField.textContent = mover.type
         mover.scoreField = document.createElement("td")
         mover.scoreField.textContent = mover.score
-        mover.finishedField = document.createElement("td")
-        mover.finishedField.textContent = mover.finished
 
-        tr.appendChild(mover.typeField)
         tr.appendChild(mover.scoreField)
-        tr.appendChild(mover.finishedField)
 
         table.appendChild(tr)
 
@@ -128,7 +122,6 @@ class Game {
             this.time = this.newTime
             this.frameNum++;
             frameSetting.textContent = this.frameNum.toString();
-            setScore(this.mover.score)
 
             if (renderButton.checked) {
                 this.mover.board.draw()

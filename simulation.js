@@ -1,6 +1,6 @@
 sb.addEventListener("click", () => {start(true)})
-gb.addEventListener("click", () => {start(false)})
-eb.addEventListener("click", end)
+tb.addEventListener("click", () => {start(false)})
+rb.addEventListener("click", end)
 
 let game;
 let interval = -1;
@@ -40,9 +40,9 @@ function start(simulation) {
         game = new Tester(simulation, 1);
     }
 
-    sb.style.display = "none";
-    eb.style.display = "block";
-    gb.style.display = "none";
+    // sb.style.display = "none";
+    // eb.style.display = "block";
+    // gb.style.display = "none";
 }
 
 function end() {
@@ -52,9 +52,9 @@ function end() {
 
     running = false;
 
-    sb.style.display = "block";
-    gb.style.display = "block";
-    eb.style.display = "none";
+    // sb.style.display = "block";
+    // gb.style.display = "block";
+    // eb.style.display = "none";
 
     game.end()
 }

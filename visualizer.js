@@ -1,7 +1,7 @@
 let running = false;
-const sb = document.querySelector(".start");
-const eb = document.querySelector(".end");
-const gb = document.querySelector(".game");
+const sb = document.querySelector(".run");
+const rb = document.querySelector(".reset");
+const tb = document.querySelector(".test");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext('2d');
 const score = document.querySelector(".scoreAmount");
@@ -11,7 +11,7 @@ const agentStuff = document.querySelector(".agentStuff")
 const simulationNum = document.querySelector(".simulationNum")
 const frameTimeInput = document.querySelector("input.frameTime")
 const frameTimeHeader = document.querySelector("span.frameTime")
-const renderButton = document.querySelector(".render")
+const renderButton = document.querySelector(".rCanvas")
 const getTimeBetweenFrames = () => {return frameTimeInput.value}
 frameTimeInput.addEventListener("input", () => {frameTimeHeader.textContent = getTimeBetweenFrames()})
 const setScore = (amount) => {score.textContent = amount}
