@@ -85,14 +85,23 @@
                             <label for="avgScores">Avg. Score</label>
                         </div>
                     </div>
-                    <dis class="stats">
-                        <h1 class="settingHeader">Statistic</h1>
-                        <h3>Frame: <span class="frameSetting"></span></h3>
-                        <h3>Iteration: <span class="iterationSetting"></span></h3>
-                        <h3>Best Agent: <span class="bestAgentSetting"></span></h3>
-                        <h3>Avg. Frame Time: <span class="avgFrameSetting"></span></h3>
-                        <h3>Avg. Score: <span class="avgScoreSetting"></span></h3>
-                    </dis>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Statistics')" id="defaultOpen">Statistics</button>
+                        <button class="tablinks" onclick="openCity(event, 'Chart')">Chart</button>
+                    </div>
+                    <div id="Statistics" class="tabcontent">
+                        <dis class="stats">
+                            <h1 class="settingHeader">Statistics</h1>
+                            <h3>Frame: <span class="frameSetting"></span></h3>
+                            <h3>Iteration: <span class="iterationSetting"></span></h3>
+                            <h3>Best Agent: <span class="bestAgentSetting"></span></h3>
+                            <h3>Avg. Frame Time: <span class="avgFrameSetting"></span></h3>
+                            <h3>Avg. Score: <span class="avgScoreSetting"></span></h3>
+                        </dis>
+                    </div>
+                    <div id="Chart" class="tabcontent">
+                        <canvas class="chart" data-labels = 'Gen' data-values ='0' data-title = 'Top Score' data-tabs = '3' data-chart='Players' style="background-color: #0c0b10;" height="150px"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
