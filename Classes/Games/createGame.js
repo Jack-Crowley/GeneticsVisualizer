@@ -53,6 +53,20 @@ function isInteger(value) {
     return false;
 }
 
+function parseNumber(value) {
+    if (isInteger(value)) return Number(value);
+    else if (value.startsWith("random(")) {
+        let sections = value.split(",")
+        let leftNum = sections[0].split("(")[1]
+        let rightNum = sections[1].split(")")[0]
+        if (isInteger(leftNum)) leftNum = Number(leftNum)
+        else if (leftNum == "width" || leftNum == "height") leftNum = 500;
+        if (isInteger(rightNum)) rightNum = Number(rightNum)
+        else if (rightNum == "width" || rightNum == "height") rightNum = 500;
+        return Math.floor(Math.random()*(rightNum-leftNum))+leftNum;
+    }
+}
+
 function loadJSON() {
     json = {
         "name": "random",
@@ -296,8 +310,11 @@ function createGame(simulation, numAgents, bestMovers=[]) {
 
     json.map.forEach((m) => {
         for (let i = 0; i < (m.hasOwnProperty("amount") ? Number(m.amount) : 1); i++) {
-            let xPos = Number(m.x);
-            let yPos = Number(m.y);
+            let xPos = parseNumber(m.x);
+            console.log("XPOSSSSS:")
+            console.log(xPos)
+            let yPos = parseNumber(m.y);
+            console.log(yPos)
             console.log(m.amount)
             game.movers.forEach((mover) => {
                 let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();}})
