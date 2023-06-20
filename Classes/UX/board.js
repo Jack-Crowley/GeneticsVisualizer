@@ -34,7 +34,7 @@ class Board {
         let closeValue = -1;
         let closeShape = null;
         this.getShapes(name).forEach((shape) => {
-            let x = Math.sqrt((shape.position.xPos-player.shape.position.xPos)**2+(shape.position.yPos-player.shape.position.yPos)**2);
+            let x = Math.sqrt((Number(shape.position.xPos)-Number(player.shape.position.xPos))**2+(Number(shape.position.yPos)-Number(player.shape.position.yPos))**2);
             if (closeValue == -1 || closeValue > x) {
                 closeValue = x
                 closeShape = shape;
