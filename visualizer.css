@@ -202,7 +202,7 @@ thead tr {
     padding: 10px 0;
 }
 
-.import {
+.importButton {
     margin-bottom: 10px;
     background-color: var(--highlight);
 }

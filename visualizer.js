@@ -1,4 +1,6 @@
 let running = false;
+const ib = document.querySelector(".importButton");
+const exb = document.querySelector(".exportButton");
 const sb = document.querySelector(".run");
 const rb = document.querySelector(".reset");
 const tb = document.querySelector(".test");
