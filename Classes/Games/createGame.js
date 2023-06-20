@@ -281,6 +281,13 @@ function createGame(simulation, numAgents, bestMovers=[]) {
 
     console.log(shapeNames)
 
+    json.map.forEach((m) => {
+        if (!shapeNames.includes(m.name)) {
+            shapeNames.push(m.name)
+        }
+    })
+    console.log("SHAPES:")
+    console.log(shapeNames)
     game = new customGame(simulation, numAgents, null, playerShape, bestMovers, shapeNames);
 
     console.log("TEST")
