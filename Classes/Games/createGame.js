@@ -65,7 +65,7 @@ function getFormatedNumber(num) {
     return `random(${leftNum},${rightNum})`
 }
 
-function validateResults(line) {
+function validateResults(line, vars) {
     if (line == "") return;
     let word = line.split(" ")
     if (word.length != 3) return err;
@@ -79,7 +79,8 @@ function validateResults(line) {
         case "num":
             let formattedNum = getFormatedNumber(param);
             if (formattedNum == err) return err;
-            return formattedNum
+            vars.set(option.toLowerCase(), param)
+            break;
         case "str":
             return param
         case "hex":
@@ -91,9 +92,7 @@ function validateResults(line) {
 function playerStuff(text) {
     let vars = new Map();
     text.forEach((line) => {
-        if (validateResults(word[1], word[2])) {
-            vars.set(word[1].toLowerCase(), word[2])
-        }
+        validateResults(line, vars);
     })
 
     playerRequired.forEach((requiredOption) => {
@@ -108,20 +107,9 @@ function playerStuff(text) {
 function shapeStuff(text) {
     let vars = new Map();
     text.forEach((line) => {
-        if (line == "") return;
-        let word = line.split(" ")
-        if (word.length != 3) return err;
-        if (word[0].toUpperCase() != "SET") return err;
-        if (shapeOption.indexOf(word[1].toUpperCase()) == -1) return err;
-        if (shapeOption.indexOf(word[1].toUpperCase()) <= 5) {
-            let formattedNum = getFormatedNumber(word[2]);
-            console.log(formattedNum)
-            if (formattedNum == err) return err;
-            vars.set(word[1].toLowerCase(), formattedNum)
-            return
+        if (validateResults(word[1], word[2])) {
+            vars.set(word[1].toLowerCase(), word[2])
         }
-        if (!(word[2].startsWith("#") && (word[2].length == 7 || word[2].length == 9))) return err;
-        vars.set(word[1].toLowerCase(), word[2])
     })
 
     playerRequired.forEach((requiredOption) => {
