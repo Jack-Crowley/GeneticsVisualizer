@@ -108,6 +108,7 @@ class Game {
     }
 
     frame() {
+        if (paused) return;
         this.lastFrame++;
         this.avgFrame.push(this.newTime-this.time)
         let frames = 0;
@@ -118,7 +119,6 @@ class Game {
         if (this.lastFrame >= getTimeBetweenFrames()) {
             this.d = new Date();
             this.newTime = this.d.getTime();
-            console.log(this.newTime-this.time)
             this.time = this.newTime
             this.frameNum++;
             frameSetting.textContent = this.frameNum.toString();

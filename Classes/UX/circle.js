@@ -33,15 +33,15 @@ class Circle extends Shape {
             if (this.position.xPos < this.r) {
                 this.position.xPos=this.r;
             }
-            if (this.position.xPos > canvas.width-this.r) {
-                this.position.xPos=canvas.width-this.r;
+            if (this.position.xPos > 500-this.r) {
+                this.position.xPos=500-this.r;
             }
 
             if (this.position.yPos < this.r) {
                 this.position.yPos=this.r;
             }
-            if (this.position.yPos > canvas.height-this.r) {
-                this.position.yPos=canvas.height-this.r;
+            if (this.position.yPos > 500-this.r) {
+                this.position.yPos=500-this.r;
             }
 
         }

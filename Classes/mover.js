@@ -88,6 +88,5 @@ class Mover {
 
     endSimulation() {
         this.finished = true
-        this.finishedField.textContent = this.finished;
     }
 }

@@ -1,6 +1,8 @@
 sb.addEventListener("click", () => {start(true)})
 tb.addEventListener("click", () => {start(false)})
 rb.addEventListener("click", end)
+pb.addEventListener("click", () => {paused = true})
+plb.addEventListener("click", () => {paused = false})
 
 let game;
 let interval = -1;
@@ -16,7 +18,7 @@ function start(simulation) {
         game = new Tester(simulation, numAgents);
         interval = setInterval(() => {
             if (game.frameNum >= 500) {
-                simulationNum.textContent = parseInt(simulationNum.textContent)+1
+                // simulationNum.textContent = parseInt(simulationNum.textContent)+1 TODO
                 table.innerHTML="";
                 bestMovers = game.getBestAgents(2)
                 bestAgentSetting.textContent = bestMovers[0].score.toString();
@@ -27,7 +29,7 @@ function start(simulation) {
                     canvas.dataset.values += bestMovers[0].score
                     // console.log("Labels: " + canvas.dataset.labels)
                     canvas.dataset.labels += ",Gen " + canvas.dataset.labels.split(',').length
-                    createChart()
+                    // createChart()
                     console.log(canvas.dataset.values)
                 })
                 game.end();
