@@ -9,18 +9,25 @@ let json = {
 let err = "err"
 
 let all = {
-    "NAME":"str",
-    "X":"num",
-    "Y":"num",
-    "AMOUNT":"num",
-    "LENGTH":"num",
-    "WIDTH":"num",
-    "RADIUS":"num",
-    "ON_COLLIDE_VALUE":"num",
-    "TYPE":"str",
-    "STROKE_COLOR":"hex",
-    "FILL_COLOR":"hex",
-    "ON_COLLIDE_MODE":"hex"
+    "NAME": "str",
+    "X": "num",
+    "Y": "num",
+    "AMOUNT": "num",
+    "LENGTH": "num",
+    "WIDTH": "num",
+    "RADIUS": "num",
+    "ON_COLLIDE_VALUE": "num",
+    "TYPE": "str",
+    "STROKE_COLOR": "hex",
+    "FILL_COLOR": "hex",
+    "ON_COLLIDE_MODE": "hex",
+    "KEY":"num",
+    "ACTION_MODE":"str",
+    "X_POWER":"num",
+    "Y_POWER":"num",
+    "DELAY":"num",
+    "MODE":"str",
+    "VALUE":"num"
 }
 
 let allOptions = new Map(Object.entries(all))
@@ -28,8 +35,14 @@ let allOptions = new Map(Object.entries(all))
 let playerOption = ["X", "Y", "RADIUS", "STROKE_COLOR", "FILL_COLOR"]
 let playerRequired = ["X", "Y", "RADIUS", "STROKE_COLOR"]
 
-let shapeOption = ["X","Y","AMOUNT","LENGTH","WIDTH","RADIUS","ON_COLLIDE_VALUE","TYPE","STROKE_COLOR","FILL_COLOR","ON_COLLIDE_MODE","NAME"]
-let shapeRequired = ["X", "Y", "TYPE", "STROKE_COLOR","NAME"]
+let shapeOption = ["X", "Y", "AMOUNT", "LENGTH", "WIDTH", "RADIUS", "ON_COLLIDE_VALUE", "TYPE", "STROKE_COLOR", "FILL_COLOR", "ON_COLLIDE_MODE", "NAME"]
+let shapeRequired = ["X", "Y", "TYPE", "STROKE_COLOR", "NAME"]
+
+let actionOption = ["KEY", "ACTION_MODE", "X_POWER", "Y_POWER"]
+let actionRequired = ["KEY", "ACTION_MODE"]
+
+let timedOption = ["DELAY","MODE","VALUE"]
+let timedRequired = ["DELAY","MODE","VALUE"]
 
 function isInteger(value) {
     if (parseInt(value, 10).toString() === value) {
@@ -49,13 +62,23 @@ function loadJSON() {
         switch (child.classList[1]) {
             case "player":
                 playerStuff(textArea)
+                break;
+            case "shape":
+                shapeStuff(textArea);
+                break;
+            case "action":
+                actionStuff(textArea);
+                break;
+            case "timed":
+                timedStuff(textArea);
+                break;
         }
     })
 }
 
 function throwNumberErr(num, msg) {
     let blocksOnPage = document.querySelectorAll(".block")
-    
+
 }
 
 function getFormatedNumber(num) {
@@ -64,9 +87,9 @@ function getFormatedNumber(num) {
     let sections = num.split(",")
     if (sections.length != 2) return err;
     let leftNum = sections[0].split("(")[1]
-    if (!isInteger(leftNum)) return err;
+    if (!isInteger(leftNum) && leftNum.toLowerCase() != "width" && leftNum.toLowerCase() != "height") return err;
     let rightNum = sections[1].split(")")[0]
-    if (!isInteger(rightNum)) return err;
+    if (!isInteger(rightNum) && rightNum.toLowerCase() != "width" && rightNum.toLowerCase() != "height") return err;
     return `random(${leftNum},${rightNum})`
 }
 
@@ -75,7 +98,7 @@ function validateResults(line, vars) {
     let word = line.split(" ")
     if (word.length != 3) return err;
     if (word[0].toUpperCase() != "SET") return err;
-    if (!playerOption.has(word[1].toUpperCase())) return err;
+    if (!allOptions.has(word[1].toUpperCase())) return err;
 
     let option = word[1];
     let param = word[2];
@@ -114,24 +137,66 @@ function playerStuff(text) {
 function shapeStuff(text) {
     let vars = new Map();
     text.forEach((line) => {
-        if (validateResults(word[1], word[2])) {
-            vars.set(word[1].toLowerCase(), word[2])
-        }
+        validateResults(line, vars);
+    })
+    shapeRequired.forEach((requiredOption) => {
+        if (!vars.has(requiredOption.toLowerCase())) console.log(requiredOption);
     })
 
-    playerRequired.forEach((requiredOption) => {
-        if (!vars.has(requiredOption.toLowerCase())) return err;
-    })
-
-    for (const [key, value] of vars.entries()) {
-        json.player[key] = value
+    if (vars.get("type") == "circle") {
+        if (!vars.has("radius")) return err;
     }
+    else {
+        if (!vars.has("length")) return err;
+        if (!vars.has("width")) return err;
+    }
+
+
+    let tempJson = {}
+    for (const [key, value] of vars.entries()) {
+        tempJson[key] = value
+    }
+
+    json.map.push(tempJson)
 }
 
 function actionStuff(text) {
+    let vars = new Map();
+    text.forEach((line) => {
+        validateResults(line, vars);
+    })
 
+    actionRequired.forEach((requiredOption) => {
+        if (!vars.has(requiredOption.toLowerCase())) return err;
+    })
+
+    if (vars.get("action_mode") != "move") return err;
+    if (!(vars.has("x_power") || vars.has("y_power"))) return err;
+
+    let tempJson = {}
+    for (const [key, value] of vars.entries()) {
+        tempJson[key] = value
+    }
+
+    json.actions.push(tempJson)
 }
 
 function timedStuff(text) {
+    let vars = new Map();
+    text.forEach((line) => {
+        validateResults(line, vars);
+    })
 
+    timedRequired.forEach((requiredOption) => {
+        if (!vars.has(requiredOption.toLowerCase())) return err;
+    })
+
+    if (vars.get('mode') != "points") return err;
+
+    let tempJson = {}
+    for (const [key, value] of vars.entries()) {
+        tempJson[key] = value
+    }
+
+    json.timed.push(tempJson)
 }
