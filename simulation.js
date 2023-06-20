@@ -21,7 +21,14 @@ function start(simulation) {
                 // simulationNum.textContent = parseInt(simulationNum.textContent)+1 TODO
                 table.innerHTML="";
                 bestMovers = game.getBestAgents(2)
-                bestAgentSetting.textContent = bestMovers[0].score.toString();
+                if (Number(bestMovers[0].score.toString()) > Number(bestAgentSetting.textContent)) {
+                    bestAgentSetting.textContent = bestMovers[0].score.toString();
+                }
+                let score = 0;
+                for(let i = 0; i < game.movers.length; i++) {
+                    score += game.movers[i].score;
+                }
+                avgScoreSetting.textContent = (score/game.movers.length).toFixed(2).toString();
                 console.log("First: "+bestMovers[0].score+"; "+"Second: "+bestMovers[1].score+"; Average: "+((bestMovers[0].score+bestMovers[1].score)/2))
                 document.querySelectorAll('canvas.chart').forEach((canvas) => {
                     if (canvas.dataset.values !== "") canvas.dataset.values += ","

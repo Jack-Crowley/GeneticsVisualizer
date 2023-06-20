@@ -110,15 +110,16 @@ class Game {
     frame() {
         if (paused) return;
         this.lastFrame++;
-        this.avgFrame.push(this.newTime-this.time)
-        let frames = 0;
-        for (let i = 0; i < this.avgFrame.length; i++) {
-            frames += this.avgFrame[i]
-        }
-        avgFrameSetting.textContent = frames/this.avgFrame.length.toString();
         if (this.lastFrame >= getTimeBetweenFrames()) {
             this.d = new Date();
             this.newTime = this.d.getTime();
+            let timeDif = this.newTime - this.time;
+            this.avgFrame.push(timeDif)
+            let frames = 0;
+            for (let i = 0; i < this.avgFrame.length; i++) {
+                frames += this.avgFrame[i]
+            }
+            avgFrameSetting.textContent = (frames/this.avgFrame.length).toFixed(2).toString();
             this.time = this.newTime
             this.frameNum++;
             frameSetting.textContent = this.frameNum.toString();
@@ -133,11 +134,6 @@ class Game {
                 mover.board.update()
             })
             this.lastFrame = 0;
-            let score = 0;
-            for(let i = 0; i < this.movers.length; i++) {
-                score += this.movers[i].score;
-            }
-            avgScoreSetting.textContent = score/this.movers.length.toString();
         }
     }
 
