@@ -1,5 +1,5 @@
 class Game {
-    constructor(simulation, numPlayers, baseAgent, playerShape, model, ...shapes) {
+    constructor(simulation, numPlayers, baseAgent, playerShape, model, shapes) {
         this.simulation = simulation
         this.numPlayers = numPlayers;
         this.baseAgent = baseAgent;
@@ -43,8 +43,8 @@ class Game {
         this.setMover(this.movers[0])
         this.mover.shape.strokeColor = "#000";
 
-        this.createMap()
-        this.start()
+        // this.createMap()
+        // this.start()
     }
 
     getBestAgents(num) {

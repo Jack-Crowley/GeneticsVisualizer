@@ -264,3 +264,28 @@ function handleImport(fileContents) {
 }
 
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+function createGame(simulation, numAgents, bestMovers=[]) {
+    loadJSON();
+    let shapeNames = []
+    json.map.forEach((m) => {shapeNames.push(m.name)})
+    let playerShape = new Circle("Mover", null, new Position(json.player.x, json.player.y), json.player.radius, json.player.stroke_color,{canLeaveEdge:false, fillColor:json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null})
+    console.log(playerShape)
+
+    game = new customGame(simulation, numAgents, null, playerShape, bestMovers, shapeNames);
+
+    json.map.forEach((m) => {
+        for (let i = 0; i < m.hasOwnProperty("amount") ? m.amount : 1; i++) {
+            let xPos = m.x;
+            let yPos = m.y;
+            game.movers.forEach((mover) => {
+                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();this.playerFinished()}})
+    
+                mover.board.addShape(s)
+                s.collision = (mover.shape)
+            })
+        }
+    })
+
+    game.start()
+}

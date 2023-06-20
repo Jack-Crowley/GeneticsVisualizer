@@ -15,7 +15,7 @@ function start(simulation, model=null) {
     running = true;
 
     if (simulation) {
-        game = new Tester(simulation, numAgents, model);
+        createGame(simulation, numAgents)
         interval = setInterval(() => {
             if (game.frameNum >= 500) {
                 // simulationNum.textContent = parseInt(simulationNum.textContent)+1 TODO
@@ -40,7 +40,7 @@ function start(simulation, model=null) {
                     console.log(canvas.dataset.values)
                 })
                 game.end();
-                game = new Tester(simulation, numAgents);
+                createGame(simulation, numAgents, bestMovers);
                 iterationSetting.textContent = Number(iterationSetting.textContent)+1;
             }
         }, 0)
