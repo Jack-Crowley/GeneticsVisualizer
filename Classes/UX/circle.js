@@ -6,8 +6,6 @@ class Circle extends Shape {
     }
 
     draw() {
-        console.log("test")
-
         this.checkIfValidPos()
 
         ctx.beginPath();

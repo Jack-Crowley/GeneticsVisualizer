@@ -46,7 +46,7 @@ function start(simulation, model=null) {
         }, 0)
     }
     else {
-        game = new Tester(simulation, 1);
+        game = createGame(simulation, 1);
     }
 
     // sb.style.display = "none";
