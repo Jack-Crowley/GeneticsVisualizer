@@ -1,15 +1,16 @@
 class Agent extends Mover {
 
     // Basic Constructor
-    constructor(brain) {
+    constructor(brain, shapes) {
         super("Agent")
         this.brain = brain;
+        this.inputs = shapes;
 
         if (brain instanceof NeuralNetwork) {
             this.brain = brain.copy();
             this.brain.mutate(0.1);
         } else {
-            this.brain = new NeuralNetwork(8, 10, 2);
+            this.brain = new NeuralNetwork(this.inputs.length*2, this.inputs.length*3, 2);
         }
         // Create neural net with first layer headers in inputsHeaders and weights
         // Prob 3 layer (1 hidden) but not too sure
@@ -20,15 +21,17 @@ class Agent extends Mover {
         // TODO
         // creates predictions based off of this.inputs (which is an array)
         if (this.finished) {return};
-        let closeGreen = this.board.getClosestShape(this,"green");
-        let closeBlue = this.board.getClosestShape(this,"blue");
-        let greenXDist = closeGreen.position.xPos-this.shape.position.xPos;
-        let greenYDist = closeGreen.position.yPos-this.shape.position.yPos;
-        let blueYDist = closeBlue.position.yPos-this.shape.position.yPos;
-        let blueXDist = closeBlue.position.xPos-this.shape.position.xPos;
-        let yellowXDist = 250-this.shape.position.xPos;
-        let yellowYDist = 250-this.shape.position.yPos;
-        let action = this.brain.predict([greenXDist,greenYDist,blueXDist,blueYDist,yellowXDist,yellowYDist,this.shape.position.xPos,this.shape.position.yPos])
+        let values = [];
+        for (let i = 0; i < this.inputs.length; i++) {
+            console.log(this.inputs[0][i])
+            let s = (this.board.getClosestShape(this,this.inputs[0][i]));
+            let sXDist = s.position.xPos-this.shape.position.xPos;
+            let sYDist = s.position.yPos-this.shape.position.yPos;
+            values.push(sXDist);
+            values.push(sYDist);
+        }
+        console.log(values)
+        let action = this.brain.predict(values)
         this.shape.position.setVector(new Vector(action[0],action[1]));
     }
 

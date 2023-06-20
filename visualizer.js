@@ -137,17 +137,19 @@ window.onclick = function(event) {
 }
 
 const select = document.getElementById("types");
+const edit = document.querySelector(".editor");
 
 const confirmBtn = document.querySelector(".confirm-modal");
 confirmBtn.addEventListener("click", () => {
     modal.style.display = "none";
-    createBlock(select.value)
+    createBlock(select.value,edit.childElementCount);
 })
 
-function createBlock(type) {
+function createBlock(type, num) {
     let block = document.createElement("div")
     block.classList.add("block")
     block.classList.add(type)
+    block.classList.add(num)
 
     let text = document.createElement("div")
     text.classList.add("text")
@@ -164,5 +166,10 @@ function createBlock(type) {
     text.appendChild(textArea)
 
     editor.appendChild(block)
+
+    block.addEventListener("contextmenu", () => {
+        block.removeChild(block.firstChild);
+        block.remove();
+    })
 
 }
