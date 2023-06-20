@@ -9,9 +9,10 @@
     --table2: #555555;
     --scrollBar: #666666;
     --scrollBarHover: #7a7a7a;
-  }
+}
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: 'Geologica', sans-serif;
@@ -32,16 +33,16 @@ body {
     grid-template-columns: 10fr 11fr;
 }
 
-.content > div {
+.content>div {
     height: 100%;
 }
 
 .editor {
-    background-color: var(--background);
+    background-color: var(--dark);
 }
 
 .display {
-    background-color: var(--dark);
+    background-color: var(--background);
 }
 
 .model {
@@ -72,7 +73,7 @@ canvas {
 }
 
 .table {
-    overflow:auto;
+    overflow: auto;
 }
 
 .model .table {
@@ -82,7 +83,7 @@ canvas {
 table {
     border-collapse: collapse;
     width: 100%;
-    margin-top:10px
+    margin-top: 10px
 }
 
 th {
@@ -96,7 +97,8 @@ tr {
     height: 50px;
 }
 
-tr:nth-child(even), thead tr {
+tr:nth-child(even),
+thead tr {
     background-color: var(--table2);
 }
 
@@ -129,14 +131,27 @@ tr:nth-child(even), thead tr {
     font-size: 20px;
     border: 1px solid black;
     border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.status button:hover {
+    cursor: pointer;
 }
 
 .reset {
     background-color: rgb(95, 0, 0);
 }
 
+.reset:hover {
+    background-color: rgb(67, 0, 0);
+}
+
 .stop {
     background-color: rgb(140, 1, 1);
+}
+
+.stop:hover {
+    background-color: rgb(102, 0, 0);
 }
 
 .pic {
@@ -148,12 +163,24 @@ tr:nth-child(even), thead tr {
     background-color: rgb(141, 69, 2);
 }
 
+.resume:hover {
+    background-color: rgb(104, 50, 0);
+}
+
 .run {
     background-color: rgb(0, 137, 25);
 }
 
+.run:hover {
+    background-color: rgb(0, 85, 16);
+}
+
 .test {
     background-color: rgb(0, 196, 183);
+}
+
+.test:hover {
+    background-color: rgb(1, 145, 135);
 }
 
 .settingHeader {
@@ -207,8 +234,8 @@ tr:nth-child(even), thead tr {
     margin-top: 0;
 }
 
-.stats h3{
-    color:white;
+.stats h3 {
+    color: white;
     margin: 10px;
 }
 
@@ -223,8 +250,8 @@ canvas.disabled {
 
 .eye {
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     display: none;
 }
 
@@ -243,8 +270,26 @@ canvas.disabled {
 .block {
     background-color: var(--dark);
     width: 80%;
-    border: 1px solid var(--accent);
+    border: 1px solid rgb(88, 88, 88);
     margin-left: 10%;
+    margin-bottom: 50px;
+    background-color: #242423;
+}
+
+.block.player {
+    background: linear-gradient(to left, #791212a6, var(--dark), var(--dark), var(--dark), var(--dark));
+}
+
+.block.shape {
+    background: linear-gradient(to left, #121279a6, var(--dark), var(--dark), var(--dark), var(--dark));
+}
+
+.block.action {
+    background: linear-gradient(to left, #cece00a6, var(--dark), var(--dark), var(--dark), var(--dark));
+}
+
+.block.timed {
+    background: linear-gradient(to left, #12792aa6, var(--dark), var(--dark), var(--dark), var(--dark));
 }
 
 .block .text {
@@ -253,12 +298,13 @@ canvas.disabled {
 
 textarea {
     width: 100%;
-    background-color: var(--dark);
+    font-family: 'Geologica', sans-serif;
+    background-color: transparent;
     border: none;
     resize: none;
     outline: none;
     color: white;
-    font-size: 20px;
+    font-size: 35px;
     height: auto;
     overflow: hidden;
 }
@@ -269,7 +315,15 @@ textarea {
     background-color: #f1f1f1;
     margin-top: 10px;
 }
-  
+
+.text h1 {
+    color:white;
+}
+
+.blockType {
+    text-align: center;
+}
+
 .tab button {
     background-color: inherit;
     float: left;
@@ -296,7 +350,7 @@ textarea {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-    animation: fadeEffect 1s; 
+    animation: fadeEffect 1s;
 }
   
 @keyframes fadeEffect {
