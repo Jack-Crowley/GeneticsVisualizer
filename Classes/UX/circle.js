@@ -48,13 +48,38 @@ class Circle extends Shape {
     }
 
     collide(otherShape) {
-        let x = Math.sqrt((otherShape.position.xPos-this.position.xPos)**2+(otherShape.position.yPos-this.position.yPos)**2) < Math.max(this.r, otherShape.r);
+        let x;
+        if (otherShape instanceof Circle) {
+            x = Math.sqrt((otherShape.position.xPos-this.position.xPos)**2+(otherShape.position.yPos-this.position.yPos)**2) < Math.max(this.r, otherShape.r);
+        }
+        else {
+            let x;
+            let testX = this.position.xPos;
+            let testY = this.position.yPos;
+
+            // which edge is closest?
+            if (this.position.xPos < otherShape.position.xPos)         testX = otherShape.position.xPos;      // test left edge
+            else if (this.position.xPos > otherShape.position.xPos+otherShape.w) testX = otherShape.position.xPos+otherShape.w;   // right edge
+            if (this.position.yPos < otherShape.position.yPos)         testY = otherShape.position.yPos;      // top edge
+            else if (this.position.yPos > otherShape.position.yPos+otherShape.l) testY = otherShape.position.yPos+otherShape.l;   // bottom edge
+
+            // get distance from closest edges
+            let distX = this.position.xPos-testX;
+            let distY = this.position.yPos-testY;
+            let distance = sqrt( (distX*distX) + (distY*distY) );
+
+            // if the distance is less than the radius, collision!
+            if (distance <= this.r) {
+                x = true;
+            }
+            else x = false;
+        }
+
         if (x) {
             this.board.deleteShape(this);
             this.onCollide()
             this.board.draw()
         }
-        
     }
 
 }
