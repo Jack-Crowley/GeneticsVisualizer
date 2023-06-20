@@ -44,6 +44,7 @@ class Board {
     }
 
     draw() {
+        console.log("TEST")
         clearCanvas()
         this.shapes.forEach((shape) => {
             shape.draw()
