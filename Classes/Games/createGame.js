@@ -79,13 +79,15 @@ function validateResults(line, vars) {
         case "num":
             let formattedNum = getFormatedNumber(param);
             if (formattedNum == err) return err;
-            vars.set(option.toLowerCase(), param)
+            vars.set(option.toLowerCase(), formattedNum)
             break;
         case "str":
-            return param
+            vars.set(option.toLowerCase(), param)
+            break;
         case "hex":
             if (!(param.startsWith("#") && (param.length == 7 || param.length == 9))) return err;
-            return param;
+            vars.set(option.toLowerCase(), param)
+            break;
     }
 }
 
