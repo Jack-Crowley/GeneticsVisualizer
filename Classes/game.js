@@ -23,7 +23,7 @@ class Game {
             for (let i = 0; i < numPlayers; i++) {
                 let mov;
                 if (baseAgent.length != 0) {
-                    mov = new Agent(baseAgent[baseAgentNum++]);
+                    mov = new Agent(baseAgent[baseAgentNum++], shapes);
                     if (baseAgentNum == baseAgent.length) baseAgentNum = 0;
                 }
                 else {
@@ -44,7 +44,7 @@ class Game {
         this.mover.shape.strokeColor = "#000";
 
         // this.createMap()
-        // this.start()
+        this.start()
     }
 
     getBestAgents(num) {

@@ -17,10 +17,10 @@ let all = {
     "WIDTH": "num",
     "RADIUS": "num",
     "ON_COLLIDE_VALUE": "num",
+    "ON_COLLIDE_MODE": "str",
     "TYPE": "str",
     "STROKE_COLOR": "hex",
     "FILL_COLOR": "hex",
-    "ON_COLLIDE_MODE": "hex",
     "KEY": "num",
     "ACTION_MODE": "str",
     "X_POWER": "num",
@@ -44,7 +44,7 @@ let actionRequired = ["KEY", "ACTION_MODE"]
 let timedOption = ["DELAY", "MODE", "VALUE"]
 let timedRequired = ["DELAY", "MODE", "VALUE"]
 
-let requiredJSONHeaders = ["player","actions","map","timed"]
+let requiredJSONHeaders = ["player", "actions", "map", "timed"]
 
 function isInteger(value) {
     if (parseInt(value, 10).toString() === value) {
@@ -53,7 +53,28 @@ function isInteger(value) {
     return false;
 }
 
+function parseNumber(value) {
+    if (isInteger(value)) return Number(value);
+    else if (value.startsWith("random(")) {
+        let sections = value.split(",")
+        let leftNum = sections[0].split("(")[1]
+        let rightNum = sections[1].split(")")[0]
+        if (isInteger(leftNum)) leftNum = Number(leftNum)
+        else if (leftNum == "width" || leftNum == "height") leftNum = 500;
+        if (isInteger(rightNum)) rightNum = Number(rightNum)
+        else if (rightNum == "width" || rightNum == "height") rightNum = 500;
+        return Math.floor(Math.random()*(rightNum-leftNum))+leftNum;
+    }
+}
+
 function loadJSON() {
+    json = {
+        "name": "random",
+        "player": {},
+        "map": [],
+        "actions": [],
+        "timed": []
+    }
 
     let children = []
     for (let i = 0; i < editor.children.length; i++) {
@@ -149,7 +170,7 @@ function playerStuff(text) {
 
     playerRequired.forEach((requiredOption) => {
         if (!vars.has(requiredOption.toLowerCase())) {
-            console.log("HERE")
+            // console.log("HERE")
             throwErr(text, "Missing required option.");
         }
     })
@@ -227,6 +248,7 @@ function timedStuff(text) {
 }
 
 function download() {
+    loadJSON()
     let element = document.createElement('a');
     let text = JSON.stringify(json);
 
@@ -248,7 +270,7 @@ function handleFileSelect(evt) {
     if (file) {
         var reader = new FileReader();
 
-            // Closure to capture the file information
+        // Closure to capture the file information
         reader.onload = function (e) {
             var contents = e.target.result; // File contents
             // Call your desired JavaScript function with the file contents
@@ -260,13 +282,13 @@ function handleFileSelect(evt) {
     }
 }
 
-function createBlockWithCode(type,item) {
+function createBlockWithCode(type, item) {
     createBlock(type, edit.childElementCount);
-    
-    let text = edit.children[edit.childElementCount-1].children[0].children[1]
+
+    let text = edit.children[edit.childElementCount - 1].children[0].children[1]
 
     Object.keys(item).forEach((key) => {
-        text.value+=`SET ${key.toUpperCase()} ${item[key]}\n`
+        text.value += `SET ${key.toUpperCase()} ${item[key]}\n`
     })
 
     autoExpand(text)
@@ -280,35 +302,63 @@ function handleImport(fileContents) {
     })
 
     editor.innerHTML = ""
-    createBlockWithCode("player",json.player)
-    json.map.forEach((m) => {createBlockWithCode("shape", m)})
-    json.actions.forEach((m) => {createBlockWithCode("actions", m)})
-    json.timed.forEach((m) => {createBlockWithCode("timed", m)})
+    createBlockWithCode("player", json.player)
+    json.map.forEach((m) => { createBlockWithCode("shape", m) })
+    json.actions.forEach((m) => { createBlockWithCode("actions", m) })
+    json.timed.forEach((m) => { createBlockWithCode("timed", m) })
 }
 
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
-function createGame(simulation, numAgents, bestMovers=[]) {
+function createGame(simulation, numAgents, bestMovers = []) {
     loadJSON();
     let shapeNames = []
-    json.map.forEach((m) => {shapeNames.push(m.name)})
-    let playerShape = new Circle("Mover", null, new Position(json.player.x, json.player.y), json.player.radius, json.player.stroke_color,{canLeaveEdge:false, fillColor:json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null})
-    console.log(playerShape)
+    json.map.forEach((m) => { shapeNames.push(m.name) })
+    let playerShape = new Circle("Mover", null, new Position(Number(json.player.x), Number(json.player.y)), Number(json.player.radius), json.player.stroke_color, { canLeaveEdge: false, fillColor: json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null })
 
-    game = new customGame(simulation, numAgents, null, playerShape, bestMovers, shapeNames);
+    console.log(shapeNames)
 
     json.map.forEach((m) => {
-        for (let i = 0; i < m.hasOwnProperty("amount") ? m.amount : 1; i++) {
-            let xPos = m.x;
-            let yPos = m.y;
+        if (!shapeNames.includes(m.name)) {
+            shapeNames.push(m.name)
+        }
+    })
+    console.log("SHAPES:")
+    console.log(shapeNames)
+    game = new customGame(simulation, numAgents, null, playerShape, bestMovers, shapeNames);
+
+    console.log("TEST")
+
+    console.log(json.map)
+
+    json.map.forEach((m) => {
+        for (let i = 0; i < (m.hasOwnProperty("amount") ? Number(m.amount) : 1); i++) {
+            let xPos = parseNumber(m.x);
+            console.log("XPOSSSSS:")
+            console.log(xPos)
+            let yPos = parseNumber(m.y);
+            console.log(yPos)
+            console.log(m.amount)
             game.movers.forEach((mover) => {
-                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();this.playerFinished()}})
-    
+                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, { fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => (m.hasOwnProperty("on_collide_mode")) ? (m.on_collide_mode == "points" ? mover.addScore(Number(m.on_collide_value)) : mover.endSimulation()) : null })
+
                 mover.board.addShape(s)
                 s.collision = (mover.shape)
             })
         }
     })
 
+    json.timed.forEach((t) => {
+        game.taskIDs.push(setInterval(timedRemoveScore, 1000, game, Number(t.value)))
+    })
+
     game.start()
+}
+
+function timedRemoveScore(game, amount) {
+    console.log("TEST")
+    console.log(game)
+    game.movers.forEach((mover) => {
+        mover.addScore(amount);
+    })
 }
