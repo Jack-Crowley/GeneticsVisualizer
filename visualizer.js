@@ -109,15 +109,20 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
   }
   
-let modal = document.getElementById("createNew");
+const modal = document.getElementById("createNew");
 
-// let btn = document.getElementById("myBtn");
+const btn = document.querySelector(".modal-button");
 
-let span = document.querySelector(".close");
+const span = document.querySelector(".close");
+const cancel = document.querySelector(".close-modal")
 
-// btn.onclick = function() {
-//   modal.style.display = "block";
-// }
+cancel.onclick = function() {
+    modal.style.display = "none";
+}
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
 span.onclick = function() {
   modal.style.display = "none";
@@ -128,6 +133,14 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+const select = document.getElementById("types");
+
+const confirmBtn = document.querySelector(".confirm-modal");
+confirmBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    createBlock(select.value)
+})
 
 function createBlock(type) {
     let block = document.createElement("div")

@@ -359,7 +359,7 @@ textarea {
 }
 
 .modal {
-    display: block; 
+    display: none; 
     position: fixed; 
     padding-top: 10%;
     padding-left: 25%;
@@ -435,4 +435,14 @@ textarea {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-button {
+    position: fixed;
+    bottom: 10%;
+    left: 5%;
+    font-size: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
 }
