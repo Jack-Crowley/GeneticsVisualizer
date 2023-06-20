@@ -7,7 +7,7 @@ plb.addEventListener("click", () => {paused = false})
 let game;
 let interval = -1;
 
-function start(simulation) {
+function start(simulation, model=null) {
     table.innerHTML=''
     simulation.textContent = 0;
     numAgents = 10
@@ -15,7 +15,7 @@ function start(simulation) {
     running = true;
 
     if (simulation) {
-        game = new Tester(simulation, numAgents);
+        game = new Tester(simulation, numAgents, model);
         interval = setInterval(() => {
             if (game.frameNum >= 500) {
                 // simulationNum.textContent = parseInt(simulationNum.textContent)+1 TODO
@@ -36,7 +36,7 @@ function start(simulation) {
                     canvas.dataset.values += bestMovers[0].score
                     // console.log("Labels: " + canvas.dataset.labels)
                     canvas.dataset.labels += ",Gen " + canvas.dataset.labels.split(',').length
-                    // createChart()
+                    createChart()
                     console.log(canvas.dataset.values)
                 })
                 game.end();

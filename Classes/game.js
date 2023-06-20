@@ -1,9 +1,10 @@
 class Game {
-    constructor(simulation, numPlayers, baseAgent, playerShape) {
+    constructor(simulation, numPlayers, baseAgent, playerShape, model) {
         this.simulation = simulation
         this.numPlayers = numPlayers;
         this.baseAgent = baseAgent;
         this.avgFrame = [];
+        this.model = model;
 
         this.finishedPlayers = 0;
 
@@ -26,7 +27,7 @@ class Game {
                     if (baseAgentNum == baseAgent.length) baseAgentNum = 0;
                 }
                 else {
-                    mov = new Agent(null);
+                    mov = new Agent(model);
                 }
                 this.addMover(mov);
                 mov.setShape(playerShape.cloneToBoard(mov.board))
