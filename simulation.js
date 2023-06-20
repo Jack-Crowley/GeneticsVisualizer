@@ -29,7 +29,7 @@ function start(simulation, model=null) {
                     canvas.dataset.values += bestMovers[0].score
                     // console.log("Labels: " + canvas.dataset.labels)
                     canvas.dataset.labels += ",Gen " + canvas.dataset.labels.split(',').length
-                    // createChart()
+                    createChart()
                     console.log(canvas.dataset.values)
                 })
                 game.end();
