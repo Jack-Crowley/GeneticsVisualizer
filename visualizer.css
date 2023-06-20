@@ -446,3 +446,13 @@ textarea {
     border-radius: 10px;
     transition: background-color 0.2s ease;
 }
+.info {
+    position:fixed;
+    bottom:10%;
+    left:16.5%;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+    height: 5%;
+    width: 2.3%;
+}

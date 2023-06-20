@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="documentation.css">
+    <title>Documentation</title>
+</head>
+<body>
+    <a href="./visualizer.html" class="tablink">Visualizer</a>
+    <button class="tablink" onclick="openPage('class', this, 'green')" id="defaultOpen">Classes</button>
+    <button class="tablink" onclick="openPage('contact', this, 'blue')">Contact</button>
+    <button class="tablink" onclick="openPage('about', this, 'orange')">About</button>
+
+    <div id="vis" class="tabcontent">
+        <h3>Home</h3>
+        <p>Home is where the heart is..</p>
+    </div>
+
+    <div id="class" class="tabcontent">
+          <div id="syntax" class="tabcontent2">
+            <h1>General Syntax:</h1>
+            <h3>&emsp; let X Y </h3>
+            <ul>
+                <li>&emsp;Where X is the variable name and Y is the value that X should be.</li>
+            </ul>
+            <br>
+            <h1>Classes:</h1>
+            <h2>&emsp;Player:</h2>
+            <ul>
+                <li class="bold">&emsp;<u>Variables:</u></li>
+                <ul>
+                    <li>X</li>
+                    <li>Y</li>
+                    <li>RADIUS</li>
+                    <li>STROKE_COLOR</li>
+                    <li>FILL_COLOR</li>
+                </ul>
+            </ul>
+            <h2>&emsp;Shapes:</h2>
+            <ul>
+                <li class="bold">&emsp;<u>Variables:</u></li>
+                <ul>
+                    <li>X</li>
+                    <li>Y</li>
+                    <li>TYPE</li>
+                    <ul>
+                        <li class="extra">if rectangle, do not use RADIUS</li>
+                        <li class="extra">if circle, do not use LENGTH or WIDTH</li>
+                    </ul>
+                    <li class="extra">LENGTH</li>
+                    <li>WIDTH</li>
+                    <li>RADIUS</li>
+                    <li>STROKE_COLOR</li>
+                    <li>FILL_COLOR</li>
+                    <li>ON_COLLIDE_MODE</li>
+                    <li>ON_COLLIDE_VALUE</li>
+                    <ul>
+                        <li class="extra">Can be "points" or "finish"</li>
+                    </ul>
+                </ul>
+            </ul>
+          </div>
+    </div>
+
+    <div id="contact" class="tabcontent">
+        <h3 class="contact">Contact</h3>
+        <ol>
+            <li class="contact">Github: <a href="https://github.com/Jack-Crowley/GeneticsVisualizer">https://github.com/Jack-Crowley/GeneticsVisualizer</a></li>
+            <li class="contact">Emails:</li>
+            <ul>
+                <li class="contact">jaccro25@bergen.org</li>
+                <li class="contact">parjai25@bergen.org</li>
+                <li class="contact">jacber25@bergen.org</li>
+            </ul>
+        </ol>
+    </div>
+
+    <div id="about" class="tabcontent">
+        <h3 class="about">About</h3>
+        <div class="half"><p class="about"> The Genetic Algorithm Visualizer is a website that can be used to create and modify a playable game scenario where the user will be able to see an AI neural network model train itself and improve over a series of generations using visual aids such as the game being played, tables, and charts. The player may also play the game they create if they choose.</p></div>
+    </div>
+
+    <script src="documentation.js"></script>
+</body>
+</html>
