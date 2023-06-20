@@ -17,10 +17,10 @@ let all = {
     "WIDTH": "num",
     "RADIUS": "num",
     "ON_COLLIDE_VALUE": "num",
+    "ON_COLLIDE_MODE": "str",
     "TYPE": "str",
     "STROKE_COLOR": "hex",
     "FILL_COLOR": "hex",
-    "ON_COLLIDE_MODE": "hex",
     "KEY": "num",
     "ACTION_MODE": "str",
     "X_POWER": "num",
@@ -317,7 +317,7 @@ function createGame(simulation, numAgents, bestMovers=[]) {
             console.log(yPos)
             console.log(m.amount)
             game.movers.forEach((mover) => {
-                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();}})
+                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => (m.hasOwnProperty("on_collide_mode")) ? (m.on_collide_mode == "points" ? mover.addScore(Number(m.on_collide_value)) : mover.endSimulation()) : null})
     
                 mover.board.addShape(s)
                 s.collision = (mover.shape)
