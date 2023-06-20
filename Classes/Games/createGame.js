@@ -275,10 +275,15 @@ function createGame(simulation, numAgents, bestMovers=[]) {
 
     game = new customGame(simulation, numAgents, null, playerShape, bestMovers, shapeNames);
 
+    console.log("TEST")
+
+    console.log(json.map)
+
     json.map.forEach((m) => {
-        for (let i = 0; i < m.hasOwnProperty("amount") ? m.amount : 1; i++) {
+        for (let i = 0; i < (m.hasOwnProperty("amount") ? m.amount : 1); i++) {
             let xPos = m.x;
             let yPos = m.y;
+            console.log(m.amount)
             game.movers.forEach((mover) => {
                 let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();this.playerFinished()}})
     
