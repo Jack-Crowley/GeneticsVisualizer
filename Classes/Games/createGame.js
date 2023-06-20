@@ -277,7 +277,7 @@ function createGame(simulation, numAgents, bestMovers=[]) {
     loadJSON();
     let shapeNames = []
     json.map.forEach((m) => {shapeNames.push(m.name)})
-    let playerShape = new Circle("Mover", null, new Position(json.player.x, json.player.y), json.player.radius, json.player.stroke_color,{canLeaveEdge:false, fillColor:json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null})
+    let playerShape = new Circle("Mover", null, new Position(Number(json.player.x), Number(json.player.y)), Number(json.player.radius), json.player.stroke_color,{canLeaveEdge:false, fillColor:json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null})
 
     console.log(shapeNames)
 
