@@ -1,6 +1,7 @@
 class Board {
     constructor() {
         this.shapes= [];
+        this.shapeNames = [];
         this.shapeMap = new Map()
     }
 
@@ -13,6 +14,7 @@ class Board {
         while (pos < this.shapes.length-1 && this.shapes[pos].position.xPos < shape.position.xPos) {pos++}
         this.shapes.splice(pos,0,shape)
         if (!this.shapeMap.has(shape.name)) {
+            this.shapeNames.push();
             this.shapeMap.set(shape.name, [shape])
         }
         else {
@@ -23,6 +25,8 @@ class Board {
     }
 
     getShapes(name) {
+        console.log(name)
+        console.log(this.shapeMap.get(name))
         return this.shapeMap.get(name);
     }
 
