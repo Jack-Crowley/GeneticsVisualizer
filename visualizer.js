@@ -8,16 +8,17 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext('2d');
 const score = document.querySelector(".scoreAmount");
 const tableDiv = document.querySelector(".table")
+const editor = document.querySelector(".editor")
 const table = document.querySelector(".agentTable tbody")
 const agentStuff = document.querySelector(".agentStuff")
 const simulationNum = document.querySelector(".simulationNum")
 const frameTimeInput = document.querySelector("input.frameTime")
 const frameTimeHeader = document.querySelector("span.frameTime")
 const renderButton = document.querySelector(".rCanvas")
-const getTimeBetweenFrames = () => {return frameTimeInput.value}
-frameTimeInput.addEventListener("input", () => {frameTimeHeader.textContent = getTimeBetweenFrames()})
-const setScore = (amount) => {score.textContent = amount}
-const clearCanvas = () => {ctx.clearRect(0, 0, canvas.width, canvas.height);}
+const getTimeBetweenFrames = () => { return frameTimeInput.value }
+frameTimeInput.addEventListener("input", () => { frameTimeHeader.textContent = getTimeBetweenFrames() })
+const setScore = (amount) => { score.textContent = amount }
+const clearCanvas = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); }
 const frameSetting = document.querySelector("span.frameSetting")
 frameSetting.textContent = "0";
 const iterationSetting = document.querySelector("span.iterationSetting")
@@ -32,7 +33,7 @@ avgScoreSetting.textContent = "0";
 canvas.width = Number(window.getComputedStyle(canvas).getPropertyValue('width').split("px")[0])
 canvas.height = Number(window.getComputedStyle(canvas).getPropertyValue('height').split("px")[0])
 
-tableDiv.style.height = canvas.height+"px"
+tableDiv.style.height = canvas.height + "px"
 
 const showFrame = document.querySelector(".rFrames")
 showFrame.addEventListener("change", () => {
@@ -77,34 +78,56 @@ renderCanvas.addEventListener('click', () => {
     else {
         eye.style.display = "block"
         canvas.classList.add("disabled")
-        eye.style.left = canvas.offsetLeft+(canvas.width/2)-150/2+"px"
-        eye.style.top = canvas.offsetTop+(canvas.height/2)-150/2+"px"
+        eye.style.left = canvas.offsetLeft + (canvas.width / 2) - 150 / 2 + "px"
+        eye.style.top = canvas.offsetTop + (canvas.height / 2) - 150 / 2 + "px"
     }
 })
 
 console.log(tf.getBackend())
 
 function autoExpand(textarea) {
-    textarea.style.height = 'auto'; 
-    textarea.style.height = textarea.scrollHeight + 'px'; 
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
 }
 
 document.getElementById("defaultOpen").click();
 
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
-  
+
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
+        tabcontent[i].style.display = "none";
     }
-  
+
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-  
+
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
-  }
-  
+}
+
+function createBlock(type) {
+    let block = document.createElement("div")
+    block.classList.add("block")
+    block.classList.add(type)
+
+    let text = document.createElement("div")
+    text.classList.add("text")
+
+    block.appendChild(text)
+
+    let header = document.createElement("h1");
+    header.textContent = type.toUpperCase();
+
+    let textArea = document.createElement("textarea")
+    textArea.setAttribute("oninput","autoExpand(this)")
+
+    text.appendChild(header);
+    text.appendChild(textArea)
+
+    editor.appendChild(block)
+
+}

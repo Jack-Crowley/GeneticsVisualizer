@@ -38,11 +38,11 @@ body {
 }
 
 .editor {
-    background-color: var(--background);
+    background-color: var(--dark);
 }
 
 .display {
-    background-color: var(--dark);
+    background-color: var(--background);
 }
 
 .model {
@@ -270,8 +270,26 @@ canvas.disabled {
 .block {
     background-color: var(--dark);
     width: 80%;
-    border: 1px solid var(--accent);
+    border: 1px solid rgb(88, 88, 88);
     margin-left: 10%;
+    margin-bottom: 50px;
+    background-color: #242423;
+}
+
+.block.player {
+    background: linear-gradient(to left, #791212a6, var(--dark), var(--dark), var(--dark), var(--dark));
+}
+
+.block.shape {
+    background: linear-gradient(to left, #121279a6, var(--dark), var(--dark), var(--dark), var(--dark));
+}
+
+.block.action {
+    background: linear-gradient(to left, #cece00a6, var(--dark), var(--dark), var(--dark), var(--dark));
+}
+
+.block.timed {
+    background: linear-gradient(to left, #12792aa6, var(--dark), var(--dark), var(--dark), var(--dark));
 }
 
 .block .text {
@@ -280,12 +298,13 @@ canvas.disabled {
 
 textarea {
     width: 100%;
-    background-color: var(--dark);
+    font-family: 'Geologica', sans-serif;
+    background-color: transparent;
     border: none;
     resize: none;
     outline: none;
     color: white;
-    font-size: 20px;
+    font-size: 35px;
     height: auto;
     overflow: hidden;
 }
@@ -295,6 +314,14 @@ textarea {
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     margin-top: 10px;
+}
+
+.text h1 {
+    color:white;
+}
+
+.blockType {
+    text-align: center;
 }
 
 .tab button {
