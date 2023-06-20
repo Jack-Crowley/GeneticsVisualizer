@@ -12,6 +12,26 @@
 
 <body>
     <div class="content">
+        <div id="createNew" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>
+                  <h2>Create New Block</h2>
+                </div>
+                <div class="modal-body">
+                    <label for="types">Type:</label>
+                    <select name="types" id="types">
+                      <option value="shape">Shape</option>
+                      <option value="action">Action</option>
+                      <option value="time">Time</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                  <button class="close-modal">Cancel</button>
+                  <button class="confirm-modal">Create</button>
+                </div>
+            </div>
+        </div>
         <div class="editor">
             <div class="block player">
                 <div class="text">
@@ -54,7 +74,7 @@
                     </div>
                     <div class="export">
                         <h1 class="settingHeader">Import/Export Games</h1>
-                        <button class="import">Import</button>
+                        <button class="importButton">Import</button>
                         <button class="exportButton">Export</button>
                     </div>
                 </div>
@@ -107,6 +127,7 @@
             </div>
         </div>
     </div>
+    <div><button class="modal-button">Create Blocks</button></div>
     <div class="eye">
         <img src="./Images/eye.png" alt="">
     </div>
@@ -137,6 +158,7 @@
     <script src="./Classes/Games/tester.js"></script>
 
     <!-- Simulation -->
+    <script src="./import_export.js"></script>
     <script src="./simulation.js"></script>
     <!-- <script src="./charts.js"></script> -->
 </body>

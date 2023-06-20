@@ -1,4 +1,6 @@
 let running = false;
+const ib = document.querySelector(".importButton");
+const exb = document.querySelector(".exportButton");
 const sb = document.querySelector(".run");
 const rb = document.querySelector(".reset");
 const tb = document.querySelector(".test");
@@ -107,7 +109,40 @@ function openCity(evt, cityName) {
 
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+  }
+  
+const modal = document.getElementById("createNew");
+
+const btn = document.querySelector(".modal-button");
+
+const span = document.querySelector(".close");
+const cancel = document.querySelector(".close-modal")
+
+cancel.onclick = function() {
+    modal.style.display = "none";
 }
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+const select = document.getElementById("types");
+
+const confirmBtn = document.querySelector(".confirm-modal");
+confirmBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    createBlock(select.value)
+})
 
 function createBlock(type) {
     let block = document.createElement("div")
