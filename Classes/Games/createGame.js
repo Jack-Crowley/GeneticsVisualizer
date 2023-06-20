@@ -78,12 +78,29 @@ function loadJSON() {
     })
 }
 
-function throwNumberErr(num, msg) {
-    let blocksOnPage = document.querySelectorAll(".block")
-
+let checkSubset = (parentArray, subsetArray) => {
+    return subsetArray.every((el) => {
+        return parentArray.includes(el)
+    })
 }
 
-function getFormatedNumber(num) {
+function throwErr(line, msg="Invalid command.") {
+    // end();
+    let blocksOnPage = document.querySelectorAll(".block")
+    for (let i=0; i<blocksOnPage.length; i++) {
+        console.log(blocksOnPage[i])
+        console.log(blocksOnPage[i].children[0].children[1].value.split('\n'))
+        console.log(line)
+        if (checkSubset(blocksOnPage[i].children[0].children[1].value.split('\n'), line)) {
+            let blockType = blocksOnPage[i].classList[1]
+            blockType = blockType[0].toUpperCase() + blockType.slice(1)
+            alert(`Error in line "${line}"; ${blockType} block.\n${msg}`)
+            break;
+        }
+    }
+}
+
+function getFormattedNumber(num) {
     if (isInteger(num)) return num;
     if (!num.startsWith("random(")) return err;
     let sections = num.split(",")
@@ -98,24 +115,27 @@ function getFormatedNumber(num) {
 function validateResults(line, vars) {
     if (line == "") return;
     let word = line.split(" ")
-    if (word.length != 3) return err;
-    if (word[0].toUpperCase() != "SET") return err;
-    if (!allOptions.has(word[1].toUpperCase())) return err;
+    if (word.length != 3) throwErr(line);
+    if (word[0].toUpperCase() != "SET") throwErr(line);
+    if (!allOptions.has(word[1].toUpperCase())) throwErr(line);
 
     let option = word[1];
     let param = word[2];
 
     switch (allOptions.get(option)) {
         case "num":
-            let formattedNum = getFormatedNumber(param);
-            if (formattedNum == err) return err;
+            let formattedNum = getFormattedNumber(param);
+            if (formattedNum == err) {
+                throwErr(line, "Invalid number.");
+                // return err;
+            }
             vars.set(option.toLowerCase(), formattedNum)
             break;
         case "str":
             vars.set(option.toLowerCase(), param)
             break;
         case "hex":
-            if (!(param.startsWith("#") && (param.length == 7 || param.length == 9))) return err;
+            if (!(param.startsWith("#") && (param.length == 7 || param.length == 9))) throwErr(line, "Invalid hex.");
             vars.set(option.toLowerCase(), param)
             break;
     }
@@ -128,7 +148,10 @@ function playerStuff(text) {
     })
 
     playerRequired.forEach((requiredOption) => {
-        if (!vars.has(requiredOption.toLowerCase())) return err;
+        if (!vars.has(requiredOption.toLowerCase())) {
+            console.log("HERE")
+            throwErr(text, "Missing required option.");
+        }
     })
 
     for (const [key, value] of vars.entries()) {
@@ -146,11 +169,11 @@ function shapeStuff(text) {
     })
 
     if (vars.get("type") == "circle") {
-        if (!vars.has("radius")) return err;
+        if (!vars.has("radius")) throwErr(text, "Missing required option 'radius'.");
     }
     else {
-        if (!vars.has("length")) return err;
-        if (!vars.has("width")) return err;
+        if (!vars.has("length")) throwErr(text, "Missing required option 'length'.");
+        if (!vars.has("width")) throwErr(text, "Missing required option 'width'.");
     }
 
 
@@ -169,11 +192,11 @@ function actionStuff(text) {
     })
 
     actionRequired.forEach((requiredOption) => {
-        if (!vars.has(requiredOption.toLowerCase())) return err;
+        if (!vars.has(requiredOption.toLowerCase())) throwErr(text, `Missing required option '${requiredOption.toLowerCase()}'.`);
     })
 
     if (vars.get("action_mode") != "move") return err;
-    if (!(vars.has("x_power") || vars.has("y_power"))) return err;
+    if (!(vars.has("x_power") || vars.has("y_power"))) throwErr(text, "Missing required option.");
 
     let tempJson = {}
     for (const [key, value] of vars.entries()) {
@@ -190,10 +213,10 @@ function timedStuff(text) {
     })
 
     timedRequired.forEach((requiredOption) => {
-        if (!vars.has(requiredOption.toLowerCase())) return err;
+        if (!vars.has(requiredOption.toLowerCase())) throwErr(text, `Missing required option '${requiredOption.toLowerCase()}'.`);
     })
 
-    if (vars.get('mode') != "points") return err;
+    if (vars.get('mode') != "points") throwErr(text, "Mode is not 'points'.");
 
     let tempJson = {}
     for (const [key, value] of vars.entries()) {
