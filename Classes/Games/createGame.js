@@ -44,7 +44,7 @@ let actionRequired = ["KEY", "ACTION_MODE"]
 let timedOption = ["DELAY", "MODE", "VALUE"]
 let timedRequired = ["DELAY", "MODE", "VALUE"]
 
-let requiredJSONHeaders = ["player","actions","map","timed"]
+let requiredJSONHeaders = ["player", "actions", "map", "timed"]
 
 function isInteger(value) {
     if (parseInt(value, 10).toString() === value) {
@@ -233,7 +233,7 @@ function handleFileSelect(evt) {
     if (file) {
         var reader = new FileReader();
 
-            // Closure to capture the file information
+        // Closure to capture the file information
         reader.onload = function (e) {
             var contents = e.target.result; // File contents
             // Call your desired JavaScript function with the file contents
@@ -245,13 +245,13 @@ function handleFileSelect(evt) {
     }
 }
 
-function createBlockWithCode(type,item) {
+function createBlockWithCode(type, item) {
     createBlock(type, edit.childElementCount);
-    
-    let text = edit.children[edit.childElementCount-1].children[0].children[1]
+
+    let text = edit.children[edit.childElementCount - 1].children[0].children[1]
 
     Object.keys(item).forEach((key) => {
-        text.value+=`SET ${key.toUpperCase()} ${item[key]}\n`
+        text.value += `SET ${key.toUpperCase()} ${item[key]}\n`
     })
 
     autoExpand(text)
@@ -265,19 +265,19 @@ function handleImport(fileContents) {
     })
 
     editor.innerHTML = ""
-    createBlockWithCode("player",json.player)
-    json.map.forEach((m) => {createBlockWithCode("shape", m)})
-    json.actions.forEach((m) => {createBlockWithCode("actions", m)})
-    json.timed.forEach((m) => {createBlockWithCode("timed", m)})
+    createBlockWithCode("player", json.player)
+    json.map.forEach((m) => { createBlockWithCode("shape", m) })
+    json.actions.forEach((m) => { createBlockWithCode("actions", m) })
+    json.timed.forEach((m) => { createBlockWithCode("timed", m) })
 }
 
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
-function createGame(simulation, numAgents, bestMovers=[]) {
+function createGame(simulation, numAgents, bestMovers = []) {
     loadJSON();
     let shapeNames = []
-    json.map.forEach((m) => {shapeNames.push(m.name)})
-    let playerShape = new Circle("Mover", null, new Position(Number(json.player.x), Number(json.player.y)), Number(json.player.radius), json.player.stroke_color,{canLeaveEdge:false, fillColor:json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null})
+    json.map.forEach((m) => { shapeNames.push(m.name) })
+    let playerShape = new Circle("Mover", null, new Position(Number(json.player.x), Number(json.player.y)), Number(json.player.radius), json.player.stroke_color, { canLeaveEdge: false, fillColor: json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null })
 
     console.log(shapeNames)
 
@@ -300,13 +300,25 @@ function createGame(simulation, numAgents, bestMovers=[]) {
             let yPos = Number(m.y);
             console.log(m.amount)
             game.movers.forEach((mover) => {
-                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => (m.hasOwnProperty("on_collide_mode")) ? (m.on_collide_mode == "points" ? mover.addScore(Number(m.on_collide_value)) : mover.endSimulation()) : null})
-    
+                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, { fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => (m.hasOwnProperty("on_collide_mode")) ? (m.on_collide_mode == "points" ? mover.addScore(Number(m.on_collide_value)) : mover.endSimulation()) : null })
+
                 mover.board.addShape(s)
                 s.collision = (mover.shape)
             })
         }
     })
 
+    json.timed.forEach((t) => {
+        game.taskIDs.push(setInterval(timedRemoveScore, 1000, game, Number(t.value)))
+    })
+
     game.start()
+}
+
+function timedRemoveScore(game, amount) {
+    console.log("TEST")
+    console.log(game)
+    game.movers.forEach((mover) => {
+        mover.addScore(amount);
+    })
 }
