@@ -300,7 +300,7 @@ function createGame(simulation, numAgents, bestMovers=[]) {
             let yPos = m.y;
             console.log(m.amount)
             game.movers.forEach((mover) => {
-                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();this.playerFinished()}})
+                let s = new Circle(m.name, mover.board, new Position(xPos, yPos), 5, m.stroke_color, {fillColor: m.hasOwnProperty("fill_color") ? m.fill_color : null, onCollide: () => {m.on_collide_mode == "points" ? mover.addScore(m.on_collide_value) : mover.endSimulation();mover.playerFinished()}})
     
                 mover.board.addShape(s)
                 s.collision = (mover.shape)
