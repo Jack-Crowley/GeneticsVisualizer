@@ -74,8 +74,9 @@
                     </div>
                     <div class="export">
                         <h1 class="settingHeader">Import/Export Games</h1>
-                        <button class="importButton">Import</button>
-                        <button class="exportButton">Export</button>
+                        <input type="file" id="fileInput" accept=".gv" style="display:none" />
+                        <button onclick="document.getElementById('fileInput').click()" class="importButton">Import</button>
+                        <button class="exportButton" onclick="download()">Export</button>
                     </div>
                 </div>
                 <div class="right">

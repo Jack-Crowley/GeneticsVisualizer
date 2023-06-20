@@ -21,13 +21,13 @@ let all = {
     "STROKE_COLOR": "hex",
     "FILL_COLOR": "hex",
     "ON_COLLIDE_MODE": "hex",
-    "KEY":"num",
-    "ACTION_MODE":"str",
-    "X_POWER":"num",
-    "Y_POWER":"num",
-    "DELAY":"num",
-    "MODE":"str",
-    "VALUE":"num"
+    "KEY": "num",
+    "ACTION_MODE": "str",
+    "X_POWER": "num",
+    "Y_POWER": "num",
+    "DELAY": "num",
+    "MODE": "str",
+    "VALUE": "num"
 }
 
 let allOptions = new Map(Object.entries(all))
@@ -41,8 +41,10 @@ let shapeRequired = ["X", "Y", "TYPE", "STROKE_COLOR", "NAME"]
 let actionOption = ["KEY", "ACTION_MODE", "X_POWER", "Y_POWER"]
 let actionRequired = ["KEY", "ACTION_MODE"]
 
-let timedOption = ["DELAY","MODE","VALUE"]
-let timedRequired = ["DELAY","MODE","VALUE"]
+let timedOption = ["DELAY", "MODE", "VALUE"]
+let timedRequired = ["DELAY", "MODE", "VALUE"]
+
+let requiredJSONHeaders = ["player","actions","map","timed"]
 
 function isInteger(value) {
     if (parseInt(value, 10).toString() === value) {
@@ -200,3 +202,65 @@ function timedStuff(text) {
 
     json.timed.push(tempJson)
 }
+
+function download() {
+    let element = document.createElement('a');
+    let text = JSON.stringify(json);
+
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', "test.gv");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+function handleFileSelect(evt) {
+    var files = evt.target.files; // Get the selected files
+    var file = files[0]; // Assuming only one file is selected
+
+    if (file) {
+        var reader = new FileReader();
+
+            // Closure to capture the file information
+        reader.onload = function (e) {
+            var contents = e.target.result; // File contents
+            // Call your desired JavaScript function with the file contents
+            handleImport(contents);
+        };
+
+        // Read the file
+        reader.readAsText(file);
+    }
+}
+
+function createBlockWithCode(type,item) {
+    createBlock(type, edit.childElementCount);
+    
+    let text = edit.children[edit.childElementCount-1].children[0].children[1]
+
+    Object.keys(item).forEach((key) => {
+        text.value+=`SET ${key.toUpperCase()} ${item[key]}\n`
+    })
+
+    autoExpand(text)
+}
+
+function handleImport(fileContents) {
+    json = JSON.parse(fileContents);
+
+    requiredJSONHeaders.forEach((header) => {
+        if (!json.hasOwnProperty(header)) return err;
+    })
+
+    editor.innerHTML = ""
+    createBlockWithCode("player",json.player)
+    json.map.forEach((m) => {createBlockWithCode("shape", m)})
+    json.actions.forEach((m) => {createBlockWithCode("actions", m)})
+    json.timed.forEach((m) => {createBlockWithCode("timed", m)})
+}
+
+document.getElementById('fileInput').addEventListener('change', handleFileSelect);
