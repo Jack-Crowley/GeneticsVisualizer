@@ -13,8 +13,9 @@
 <body>
     <div class="content">
         <div class="editor">
-            <div class="block">
+            <div class="block player">
                 <div class="text">
+                    <h1>PLAYER</h1>
                     <textarea oninput="autoExpand(this)"></textarea>
                 </div>
             </div>
@@ -41,11 +42,11 @@
                 <div class="left">
                     <div class="status">
                         <h1 class="settingHeader">Status</h1>
-                        <button class="reset" title="Reset button"><img src="./Images/restoreWhite.png" alt="" class="pic"></button>
-                        <button class="stop" title="Stop button"><img src="./Images/stopWhite.png" alt="" class="pic"></button>
-                        <button class="resume" title="Resume button"><img src="./Images/continueWhite.png" alt="" class="pic"></button>
-                        <button class="run" title="Play button"><img src="./Images/startWhite.png" alt="" class="pic"></button>
-                        <button class="test" title="Test button"><img src="./Images/test.png" alt="" class="pic"></button>
+                        <button class="reset" title="Reset"><img src="./Images/restart.png" alt="" class="pic"></button>
+                        <button class="stop" title="Stop"><img src="./Images/stopWhite.png" alt="" class="pic"></button>
+                        <button class="resume" title="Resume"><img src="./Images/continueWhite.png" alt="" class="pic"></button>
+                        <button class="run" title="Play"><img src="./Images/startWhite.png" alt="" class="pic"></button>
+                        <button class="test" title="Test"><img src="./Images\test.png" alt="" class="pic"></button>
                     </div>
                     <div class="speed">
                         <h1 class="settingHeader">Speed: <span class="frameTime">5</span> milliseconds</h1>
@@ -58,6 +59,11 @@
                     </div>
                 </div>
                 <div class="right">
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Statistics')" id="defaultOpen">Statistics</button>
+                        <button class="tablinks" onclick="openCity(event, 'Chart')">Chart</button>
+                    </div>
+                    <div id="Statistics" class="tabcontent">
                     <div class="flickers">
                         <h1 class="settingHeader">Render</h1>
                         <div>
@@ -85,14 +91,18 @@
                             <label for="avgScores">Avg. Score</label>
                         </div>
                     </div>
-                    <dis class="stats">
-                        <h1 class="settingHeader">Statistic</h1>
-                        <h3>Frame: <span class="frameSetting"></span></h3>
-                        <h3>Iteration: <span class="iterationSetting"></span></h3>
-                        <h3>Best Agent: <span class="bestAgentSetting"></span></h3>
-                        <h3>Avg. Frame Time: <span class="avgFrameSetting"></span></h3>
-                        <h3>Avg. Score: <span class="avgScoreSetting"></span></h3>
-                    </dis>
+                        <dis class="stats">
+                            <h1 class="settingHeader">Statistics</h1>
+                            <h3>Frame: <span class="frameSetting"></span></h3>
+                            <h3>Iteration: <span class="iterationSetting"></span></h3>
+                            <h3>Best Agent: <span class="bestAgentSetting"></span></h3>
+                            <h3>Avg. Frame Time: <span class="avgFrameSetting"></span></h3>
+                            <h3>Avg. Score: <span class="avgScoreSetting"></span></h3>
+                        </dis>
+                    </div>
+                    <div id="Chart" class="tabcontent">
+                        <canvas class="chart" data-labels = 'Gen' data-values ='0' data-title = 'Top Score' data-tabs = '3' data-chart='Players' style="background-color: #0c0b10;" height="150px"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,10 +110,6 @@
     <div class="eye">
         <img src="./Images/eye.png" alt="">
     </div>
-
-    <!-- <div class="col s12 white-text">
-            <canvas class="chart" data-values ='0' data-title = 'Top Score' data-tabs = '3' data-chart='Players' style="background-color: #0c0b10;" height="150px"></canvas>
-        </div> -->
 
     <!-- Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>

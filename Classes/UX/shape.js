@@ -28,4 +28,8 @@ class Shape {
     static compareTo(a,b) {
         return b.positionToPlayer-a.positionToPlayer;
     }
+
+    calculatePoint(oldPos) {
+        return oldPos*(canvas.width/500);
+    }
 }
