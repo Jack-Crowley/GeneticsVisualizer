@@ -1,5 +1,3 @@
-import * as fs from 'fs';
-
 ib.addEventListener("click", importNN)
 exb.addEventListener("click", exportNN)
 
