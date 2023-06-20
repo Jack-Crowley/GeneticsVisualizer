@@ -128,7 +128,7 @@ function playerStuff(text) {
     })
 
     playerRequired.forEach((requiredOption) => {
-        if (!vars.has(requiredOption.toLowerCase())) return err;
+        if (!vars.has(requiredOption.toLowerCase())) console.log(requiredOption); return err;
     })
 
     for (const [key, value] of vars.entries()) {
@@ -204,6 +204,7 @@ function timedStuff(text) {
 }
 
 function download() {
+    loadJSON()
     let element = document.createElement('a');
     let text = JSON.stringify(json);
 
