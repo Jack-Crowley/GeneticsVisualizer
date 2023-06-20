@@ -7,7 +7,7 @@ plb.addEventListener("click", () => {paused = false})
 let game;
 let interval = -1;
 
-function start(simulation) {
+function start(simulation, model=null) {
     table.innerHTML=''
     simulation.textContent = 0;
     numAgents = 10
@@ -15,13 +15,20 @@ function start(simulation) {
     running = true;
 
     if (simulation) {
-        game = new Tester(simulation, numAgents);
+        game = new Tester(simulation, numAgents, model);
         interval = setInterval(() => {
             if (game.frameNum >= 500) {
                 // simulationNum.textContent = parseInt(simulationNum.textContent)+1 TODO
                 table.innerHTML="";
                 bestMovers = game.getBestAgents(2)
-                bestAgentSetting.textContent = bestMovers[0].score.toString();
+                if (Number(bestMovers[0].score.toString()) > Number(bestAgentSetting.textContent)) {
+                    bestAgentSetting.textContent = bestMovers[0].score.toString();
+                }
+                let score = 0;
+                for(let i = 0; i < game.movers.length; i++) {
+                    score += game.movers[i].score;
+                }
+                avgScoreSetting.textContent = (score/game.movers.length).toFixed(2).toString();
                 console.log("First: "+bestMovers[0].score+"; "+"Second: "+bestMovers[1].score+"; Average: "+((bestMovers[0].score+bestMovers[1].score)/2))
                 document.querySelectorAll('canvas.chart').forEach((canvas) => {
                     if (canvas.dataset.values !== "") canvas.dataset.values += ","
@@ -29,7 +36,7 @@ function start(simulation) {
                     canvas.dataset.values += bestMovers[0].score
                     // console.log("Labels: " + canvas.dataset.labels)
                     canvas.dataset.labels += ",Gen " + canvas.dataset.labels.split(',').length
-                    // createChart()
+                    createChart()
                     console.log(canvas.dataset.values)
                 })
                 game.end();

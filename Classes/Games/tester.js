@@ -1,6 +1,6 @@
 class Tester extends Game{
-    constructor (simulation, numPlayers, ...baseAgent) {
-        super(simulation, numPlayers, baseAgent, new Circle("Mover", null, new Position(), 20, "#ff0000",{canLeaveEdge:false}));
+    constructor (simulation, numPlayers, model=null, ...baseAgent) {
+        super(simulation, numPlayers, baseAgent, new Circle("Mover", null, new Position(), 20, "#ff0000",{canLeaveEdge:false}), model);
     }
 
     createMap() {
