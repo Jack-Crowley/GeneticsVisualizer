@@ -54,7 +54,7 @@ function isInteger(value) {
 }
 
 function loadJSON() {
-    let json = {
+    json = {
         "name": "random",
         "player": {},
         "map": [],
@@ -167,7 +167,6 @@ function shapeStuff(text) {
     }
 
     json.map.push(tempJson)
-    console.log(tempJson)
 }
 
 function actionStuff(text) {
