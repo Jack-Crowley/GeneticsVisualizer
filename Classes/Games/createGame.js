@@ -68,12 +68,15 @@ function parseNumber(value) {
 }
 
 function loadJSON() {
+    let bestMover = game.getBestAgent();
+    let w = bestMover.brain.model.getWeights();
     json = {
         "name": "random",
         "player": {},
         "map": [],
         "actions": [],
-        "timed": []
+        "timed": [],
+        "weights": w
     }
 
     let children = []
@@ -306,6 +309,7 @@ function handleImport(fileContents) {
     json.map.forEach((m) => { createBlockWithCode("shape", m) })
     json.actions.forEach((m) => { createBlockWithCode("actions", m) })
     json.timed.forEach((m) => { createBlockWithCode("timed", m) })
+    start(true, json.weights);
 }
 
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
