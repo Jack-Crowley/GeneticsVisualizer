@@ -53,6 +53,11 @@ function loadJSON() {
     })
 }
 
+function throwNumberErr(num, msg) {
+    let blocksOnPage = document.querySelectorAll(".block")
+    
+}
+
 function getFormatedNumber(num) {
     if (isInteger(num)) return num;
     if (!num.startsWith("random(")) return err;
