@@ -18,9 +18,9 @@ class Agent extends Mover {
     }
 
     move() {
+        console.log("MOVE")
         // TODO
         // creates predictions based off of this.inputs (which is an array)
-        if (this.finished) {return};
         let values = [];
         for (let i = 0; i < this.inputs.length; i++) {
             console.log(this.inputs[i])
