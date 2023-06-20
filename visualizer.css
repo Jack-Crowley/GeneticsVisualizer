@@ -277,6 +277,8 @@ textarea {
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
+    font-size: larger;
+    padding-right: 13.5%;
     transition: 0.3s;
   }
   
