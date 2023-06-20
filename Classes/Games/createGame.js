@@ -11,6 +11,9 @@ let err = "err"
 let playerOption = ["X", "Y", "RADIUS", "STROKE_COLOR", "FILL_COLOR"]
 let playerRequired = ["X", "Y", "RADIUS", "STROKE_COLOR"]
 
+let shapeOption = ["X", "Y", "TYPE", "LENGTH", "WIDTH", "RADIUS", "STROKE_COLOR", "FILL_COLOR", "ON_COLLIDE_MODE", "ON_COLLIDE_VALUE"]
+let shapeRequired = ["X", "Y", "RADIUS", "STROKE_COLOR"]
+
 function isInteger(value) {
     if (parseInt(value, 10).toString() === value) {
         return true
@@ -75,7 +78,32 @@ function playerStuff(text) {
 }
 
 function shapeStuff(text) {
+    let vars = new Map();
+    text.forEach((line) => {
+        if (line == "") return;
+        let word = line.split(" ")
+        if (word.length != 3) return err;
+        if (word[0].toUpperCase() != "SET") return err;
+        if (playerOption.indexOf(word[1].toUpperCase()) == -1) return err;
+        if (playerOption.indexOf(word[1].toUpperCase()) <= 2) {
+            let formattedNum = getFormatedNumber(word[2]);
+            console.log(formattedNum)
+            if (formattedNum == err) return err;
+            vars.set(word[1].toLowerCase(), formattedNum)
+            return
+        }
 
+        if (!(word[2].startsWith("#") && (word[2].length == 7 || word[2].length == 9))) return err;
+        vars.set(word[1].toLowerCase(), word[2])
+    })
+
+    playerRequired.forEach((requiredOption) => {
+        if (!vars.has(requiredOption.toLowerCase())) return err;
+    })
+
+    for (const [key, value] of vars.entries()) {
+        json.player[key] = value
+    }
 }
 
 function actionStuff(text) {
