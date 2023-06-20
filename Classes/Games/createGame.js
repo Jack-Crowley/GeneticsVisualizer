@@ -54,6 +54,13 @@ function isInteger(value) {
 }
 
 function loadJSON() {
+    let json = {
+        "name": "random",
+        "player": {},
+        "map": [],
+        "actions": [],
+        "timed": []
+    }
 
     let children = []
     for (let i = 0; i < editor.children.length; i++) {
@@ -160,6 +167,7 @@ function shapeStuff(text) {
     }
 
     json.map.push(tempJson)
+    console.log(tempJson)
 }
 
 function actionStuff(text) {
@@ -271,7 +279,8 @@ function createGame(simulation, numAgents, bestMovers=[]) {
     let shapeNames = []
     json.map.forEach((m) => {shapeNames.push(m.name)})
     let playerShape = new Circle("Mover", null, new Position(json.player.x, json.player.y), json.player.radius, json.player.stroke_color,{canLeaveEdge:false, fillColor:json.player.hasOwnProperty("fill_color") ? json.player.fill_color : null})
-    console.log(playerShape)
+
+    console.log(shapeNames)
 
     game = new customGame(simulation, numAgents, null, playerShape, bestMovers, shapeNames);
 
