@@ -295,7 +295,7 @@ function createGame(simulation, numAgents, bestMovers=[]) {
     console.log(json.map)
 
     json.map.forEach((m) => {
-        for (let i = 0; i < (m.hasOwnProperty("amount") ? m.amount : 1); i++) {
+        for (let i = 0; i < (m.hasOwnProperty("amount") ? Number(m.amount) : 1); i++) {
             let xPos = m.x;
             let yPos = m.y;
             console.log(m.amount)
